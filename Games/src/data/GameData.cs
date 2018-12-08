@@ -9,7 +9,7 @@ namespace Games
     public static class GameData
     {
         /* Process names */
-        static class Processes
+        public static class Processes
         {
             public static string[] AssettoCorsaProcesses = { "AssettoCorsa" };
             public static string[] AssettoCorsaCompetezioneProcesses = { "AssettoCorsaCompetezione" };
