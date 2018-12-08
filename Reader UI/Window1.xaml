@@ -1,0 +1,40 @@
+﻿<Window x:Name="window" x:Class="TelemetryReader.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TelemetryReader"
+        mc:Ignorable="d"
+        Title="Telemetry Reader" Height="500" Width="800" ResizeMode="NoResize" MinWidth="800" MinHeight="500" MaxWidth="1200" MaxHeight="800" BorderThickness="0" WindowStyle="None">
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="48" MinHeight="48" Height="48"/>
+            <RowDefinition MinHeight="420"/>
+            <RowDefinition MaxHeight="24"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowFrameColorKey}}"/>
+        </Grid.Background>
+        <Grid x:Name="AppBar" Height="48" Margin="0" Background="#FF0C7070" VerticalAlignment="Top">
+            <Button x:Name="button" Content="" Margin="0" FontSize="36" HorizontalAlignment="Right" Width="{Binding ActualHeight, ElementName=button, Mode=OneWay}">
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/ic_pause.png" Stretch="None"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="button_Copy" Content="" Margin="0,0,48,0" FontSize="36" HorizontalAlignment="Right" Width="{Binding ActualHeight, ElementName=button, Mode=OneWay}">
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/ic_play.png" Stretch="None"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="button_Copy1" Content="" Margin="0,0,744,0" FontSize="36" HorizontalAlignment="Left" Width="{Binding ActualHeight, ElementName=button, Mode=OneWay}" VerticalAlignment="Top">
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/ic_play.png" Stretch="None"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid x:Name="ContentGrid" Margin="0,0,0,0" Background="#FF979797" Grid.Row="1" ShowGridLines="True"/>
+        <Grid x:Name="FooterBar" Margin="0,0,0,0" Background="#FF2E2E2E" Grid.Row="2" ShowGridLines="True">
+            <Label Content="Status: Idle" HorizontalAlignment="Left" Margin="12,0,0,0" Foreground="White" MinWidth="160" FontSize="11" VerticalContentAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>
