@@ -4,6 +4,9 @@ using System.Threading;
 
 namespace Protocol
 {
+    public delegate void Starting(object sender, EventArgs e);
+    public delegate void Working(object sender, EventArgs e);
+
     public class GameDataWorker
     {
         /* data objects */
@@ -20,6 +23,10 @@ namespace Protocol
 
         /* computed properties */
         private bool Ready => DataReader != null && DataReader.DataReady;
+
+        /* events */
+        public event Starting OnStarting;
+        public event Working OnWorking;
 
         /* constructor */
         public GameDataWorker(IGameDataReaderDisposable dataReader, IGameDataProcessor dataProcessor)
@@ -52,6 +59,8 @@ namespace Protocol
         {
             working = true;
 
+            OnStarting(this, EventArgs.Empty);
+
             // wait for ready
             while (!Ready)
             {
@@ -60,6 +69,8 @@ namespace Protocol
             }
 
             Debug.WriteLine("DataReader ready. Starting read and process.");
+
+            OnWorking(this, EventArgs.Empty);
 
             while (working)
             {

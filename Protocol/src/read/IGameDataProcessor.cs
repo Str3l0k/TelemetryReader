@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Protocol
 {
-    interface IGameDataProcessor
+    public interface IGameDataProcessor
     {
         void ProcessData(GameData data);
     }
