@@ -48,7 +48,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="src\data\Game.cs" />
-    <Compile Include="src\data\GameData.cs" />
+    <Compile Include="src\data\GameInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

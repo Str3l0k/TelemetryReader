@@ -32,9 +32,11 @@ namespace TelemetryReaderWpf.src.reader.impl
 
             sharedMemoryBuffer = new byte[sharedMemorySize];
 
-            sendData = new SendData();
-            sendData.data = sharedMemoryBuffer;
-            sendData.size = sharedMemoryBuffer.Length;
+            sendData = new SendData
+            {
+                data = sharedMemoryBuffer,
+                size = sharedMemoryBuffer.Length
+            };
         }
 
         public override bool dataAvailable()

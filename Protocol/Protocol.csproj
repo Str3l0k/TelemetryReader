@@ -42,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\read\GameData.cs" />
+    <Compile Include="src\read\GameDataWorker.cs" />
+    <Compile Include="src\read\IGameDataProcessor.cs" />
     <Compile Include="src\read\IGameDataReader.cs" />
+    <Compile Include="src\read\impl\SharedMemoryDataReader.cs" />
+    <Compile Include="src\send\Connection.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\send\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

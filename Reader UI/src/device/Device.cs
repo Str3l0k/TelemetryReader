@@ -100,18 +100,12 @@ namespace TelemetryReaderWpf.src
 
         private void OnErrorOccured()
         {
-            if (errorOccured != null)
-            {
-                errorOccured(this, EventArgs.Empty);
-            }
+            errorOccured?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnStateChanged()
         {
-            if(stateChanged != null)
-            {
-                stateChanged(this, EventArgs.Empty);
-            }
+            stateChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Games
 {
-    public static class GameData
+    public static class GameInformation
     {
         /* Process names */
         public static class Processes

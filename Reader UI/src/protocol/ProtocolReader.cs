@@ -51,8 +51,10 @@ namespace TelemetryReader.src.protocol
             this.protocolHeader.ProtocolID = protocolID;
             this.protocolPacket = new ProtocolPacketData();
             this.protocolBuffer = new byte[4096];
-            this.sendData = new SendData();
-            this.sendData.data = protocolBuffer;
+            this.sendData = new SendData
+            {
+                data = protocolBuffer
+            };
         }
 
         public bool dataAvailable()
