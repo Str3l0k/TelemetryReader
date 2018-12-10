@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Games;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -66,7 +67,7 @@ namespace TelemetryReaderWpf.src.game.search
 
                 foreach (Game game in games)
                 {
-                    foreach (string gameExe in game.processNames)
+                    foreach (string gameExe in game.ProcessNames)
                     {
                         Process[] proc = Process.GetProcessesByName(gameExe);
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Protocol
+﻿namespace Telemetry.Read
 {
     public class GameData
     {
@@ -14,7 +8,7 @@ namespace Protocol
             this.RawSize = data.Length;
         }
 
-        byte[] RawData { get; set; }
-        int RawSize { get; set; }
+        public byte[] RawData { get; set; }
+        public int RawSize { get; set; }
     }
 }

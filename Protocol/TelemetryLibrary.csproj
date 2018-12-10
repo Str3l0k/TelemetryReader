@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Protocol</RootNamespace>
     <AssemblyName>Protocol</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,13 +43,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\process\impl\TelemetryProtocolProcessor.cs" />
     <Compile Include="src\read\GameData.cs" />
-    <Compile Include="src\read\GameDataWorker.cs" />
-    <Compile Include="src\read\IGameDataProcessor.cs" />
+    <Compile Include="src\GameDataWorker.cs" />
+    <Compile Include="src\process\IGameDataProcessor.cs" />
     <Compile Include="src\read\IGameDataReader.cs" />
     <Compile Include="src\read\impl\SharedMemoryDataReader.cs" />
     <Compile Include="src\send\Connection.cs" />
+    <Compile Include="src\utilities\GameObserver.cs" />
+    <Compile Include="src\utilities\SystemProcessObserver.cs" />
+    <Compile Include="src\utilities\StructMarshal.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Games\Games.csproj">
+      <Project>{56770fc3-0452-4ea3-b9cf-f482bd309e83}</Project>
+      <Name>Games</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

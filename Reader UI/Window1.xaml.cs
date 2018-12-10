@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Telemetry.Utilities;
+using Games;
+using Telemetry.Read;
+using Telemetry.Process;
 
 namespace TelemetryReader
 {
@@ -19,9 +14,87 @@ namespace TelemetryReader
     /// </summary>
     public partial class Window1 : Window
     {
+        private double rectWidth = -1;
+
+        /* control objects */
+        private GameDict games;
+        private GameObserver gameObserver;
+
         public Window1()
         {
             InitializeComponent();
+
+            games = new GameDict();
+            gameObserver = new GameObserver(games.asArray);
+            gameObserver.OnGameFound += (game) =>
+            {
+                Debug.WriteLine($"Game found {game.Name}");
+                gameObserver.Stop();
+
+                startR3EWorker();
+            };
+            gameObserver.OnGameExited += (game) =>
+            {
+                Debug.WriteLine($"Game exited {game.Name}");
+                gameObserver.Start();
+            };
+
+            gameObserver.Start();
+
+            this.Closing += Window1_Closing;
+        }
+
+        private void startR3EWorker()
+        {
+            var dataReader = new SharedMemoryDataReader("$R3E", Marshal.SizeOf(typeof(Games.R3E.Data.Structure)));
+            var dataProcessor = new TelemetryProtocolProcessor<Games.R3E.Data.Structure>();
+
+            dataProcessor.processedCallback += DataProcessor_OnDataProcessed;
+
+            var worker = new GameDataWorker(dataReader, dataProcessor);
+
+            worker.OnStarting += Worker_OnStarting;
+            worker.OnWorking += Worker_OnWorking;
+
+            worker.Start();
+        }
+
+        private void Window1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            gameObserver.Stop();
+        }
+
+        private void DataProcessor_OnDataProcessed(Games.R3E.Data.Structure data)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                testLabel.Content = data.Gear.ToString();
+                TestRect.Width = (data.EngineRps / data.MaxEngineRps) * rectWidth;
+                SpeedLabel.Content = (int)(data.CarSpeed * 3.6);
+            }));
+        }
+
+        private void Worker_OnWorking()
+        {
+            Debug.WriteLine("Worker now working.");
+        }
+
+        private void Worker_OnStarting()
+        {
+            Debug.WriteLine("Worker now starting.");
+        }
+
+        private void TestRect_Initialized(object sender, EventArgs e)
+        {
+            rectWidth = TestRect.ActualWidth;
+        }
+
+        private void TestRect_LayoutUpdated_1(object sender, EventArgs e)
+        {
+            if (rectWidth <= 0)
+            {
+                rectWidth = TestRect.ActualWidth;
+            }
         }
     }
 }

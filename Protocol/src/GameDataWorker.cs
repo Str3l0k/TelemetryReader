@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
+using Telemetry.Process;
 
-namespace Protocol
+namespace Telemetry.Read
 {
-    public delegate void Starting(object sender, EventArgs e);
-    public delegate void Working(object sender, EventArgs e);
+    public delegate void Test();
+    public delegate void Starting();
+    public delegate void Working();
 
     public class GameDataWorker
     {
@@ -59,7 +61,7 @@ namespace Protocol
         {
             working = true;
 
-            OnStarting(this, EventArgs.Empty);
+            OnStarting();
 
             // wait for ready
             while (!Ready)
@@ -70,7 +72,7 @@ namespace Protocol
 
             Debug.WriteLine("DataReader ready. Starting read and process.");
 
-            OnWorking(this, EventArgs.Empty);
+            OnWorking();
 
             while (working)
             {

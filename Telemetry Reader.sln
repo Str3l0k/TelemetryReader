@@ -4,13 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Games", "Games\Games.csproj", "{56770FC3-0452-4EA3-B9CF-F482BD309E83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelemetryLibrary", "Protocol\TelemetryLibrary.csproj", "{430E6020-34A0-436E-B729-9D19B12C84B6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{56770FC3-0452-4EA3-B9CF-F482BD309E83} = {56770FC3-0452-4EA3-B9CF-F482BD309E83}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelemetryReader", "Reader UI\TelemetryReader.csproj", "{915A0D4D-CCC7-4128-860D-3D5F57CB8565}"
 	ProjectSection(ProjectDependencies) = postProject
 		{430E6020-34A0-436E-B729-9D19B12C84B6} = {430E6020-34A0-436E-B729-9D19B12C84B6}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocol", "Protocol\Protocol.csproj", "{430E6020-34A0-436E-B729-9D19B12C84B6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelemetryReader", "Reader UI\TelemetryReader.csproj", "{915A0D4D-CCC7-4128-860D-3D5F57CB8565}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

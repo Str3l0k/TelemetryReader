@@ -138,7 +138,6 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="src\context\AppContext.cs" />
-    <Compile Include="src\context\GameContext.cs" />
     <Compile Include="src\device\DeviceUI.cs" />
     <Compile Include="src\games\Game.cs" />
     <Compile Include="src\protocol\games\assetto\AsettoCorsaData.cs" />
@@ -260,6 +259,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\app_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Games\Games.csproj">
+      <Project>{56770fc3-0452-4ea3-b9cf-f482bd309e83}</Project>
+      <Name>Games</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Protocol\TelemetryLibrary.csproj">
+      <Project>{430e6020-34a0-436e-b729-9d19b12c84b6}</Project>
+      <Name>TelemetryLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

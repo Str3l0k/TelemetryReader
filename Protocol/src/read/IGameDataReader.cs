@@ -1,4 +1,4 @@
-﻿namespace Protocol
+﻿namespace Telemetry.Read
 {
     public interface IGameDataReader
     {

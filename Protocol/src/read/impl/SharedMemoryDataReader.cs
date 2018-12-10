@@ -1,8 +1,8 @@
 ﻿using System.IO.MemoryMappedFiles;
 
-namespace Protocol
+namespace Telemetry.Read
 {
-    public abstract class SharedMemoryDataReader<T> : IGameDataReaderDisposable
+    public class SharedMemoryDataReader : IGameDataReaderDisposable
     {
         /* properties */
         private readonly string memoryMappedFileName;

@@ -2,27 +2,37 @@
 
 namespace Games
 {
-    public class Games
+    public class GameDict
     {
         /* games dict */
-        public Dictionary<GameID, Game> GameDict { get; private set; }
-
-        /* constructor */
-        public Games()
+        public Dictionary<int, Game> dictionary { get; private set; }
+        public Game[] asArray
         {
-            initGames();
+            get
+            {
+                var array = new Game[dictionary.Count];
+                dictionary.Values.CopyTo(array, 0);
+                return array;
+            }
         }
 
-        private void initGames()
+        /* constructor */
+        public GameDict()
         {
-            GameDict.Add(GameID.AssettoCorsa,
-                new Game(GameID.AssettoCorsa, null, GameInformation.Processes.AssettoCorsaProcesses));
+            dictionary = new Dictionary<int, Game>();
+            InitGames();
+        }
 
-            GameDict.Add(GameID.RaceRoomExperience,
-                new Game(GameID.RaceRoomExperience, null, GameInformation.Processes.RaceRoomExperienceProcesses));
+        private void InitGames()
+        {
+            dictionary.Add((int)GameID.AssettoCorsa,
+                new Game(GameID.AssettoCorsa, GameInformation.Processes.AssettoCorsaProcesses));
 
-            GameDict.Add(GameID.ProjectCars2,
-                new Game(GameID.ProjectCars2, null, GameInformation.Processes.ProjectCars2Processes));
+            dictionary.Add((int) GameID.RaceRoomExperience,
+                new Game(GameID.RaceRoomExperience, GameInformation.Processes.RaceRoomExperienceProcesses));
+
+            dictionary.Add((int) GameID.ProjectCars2,
+                new Game(GameID.ProjectCars2, GameInformation.Processes.ProjectCars2Processes));
         }
     }
 }

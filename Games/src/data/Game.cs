@@ -1,4 +1,4 @@
-﻿using Protocol;
+﻿using System;
 
 namespace Games
 {
@@ -6,18 +6,16 @@ namespace Games
     {
         /* game data */
         public GameID ID { get; private set; }
-        public string Name { get; private set; }
         public string[] ProcessNames { get; private set; }
 
-        /* game specific Reader */
-        public IGameDataReader reader { get; private set; }
+        /* computed properties */
+        public string Name => Enum.GetName(ID.GetType(), ID);
+        public int gameID => (int)ID;
 
         /* constructor */
-        public Game(GameID id, IGameDataReader reader, params string[] processNames)
+        public Game(GameID id, params string[] processNames)
         {
-            this.Name = Name;
-            this.ID = ID;
-            this.reader = reader;
+            this.ID = id;
             this.ProcessNames = processNames;
         }
     }
