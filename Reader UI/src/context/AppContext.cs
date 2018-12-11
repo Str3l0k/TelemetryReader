@@ -1,7 +1,4 @@
-﻿//using System.Linq;
-//using TelemetryReaderWpf.src.context;
-//using TelemetryReaderWpf.src.game.search;
-//using TelemetryReaderWpf.src.reader;
+﻿//using TelemetryReaderWpf.src.reader;
 
 //namespace TelemetryReaderWpf.src
 //{
@@ -15,28 +12,16 @@
 //        /* connections */
 //        public Connection connection0 { get; private set; }
 //        public Connection connection1 { get; private set; }
-//        public Connection connection2 { get; private set; } 
+//        public Connection connection2 { get; private set; }
 
 //        /* worker */
 //        public Worker worker0 { get; private set; }
 //        public Worker worker1 { get; private set; }
 //        public Worker worker2 { get; private set; }
 
-//        /* GameSearcher */
-//        public GameSearcher gameSearcher { get; private set; }
-
-//        /* games */
-//        public GameContext games { get; private set; }
-        
 //        public AppContext(Preferences preferences)
 //        {
 //            init(preferences);
-
-//            /* init games */
-//            games = new GameContext();
-
-//            /* init game searcher */
-//            gameSearcher = new GameSearcher(games.gameNamesList.Values.ToArray());
 //        }
 
 //        public void init(Preferences preferences)
@@ -56,7 +41,7 @@
 
 //        public void startWorkers()
 //        {
-//            if(device0.enabled && device0.ready && device0.ipAddress != null)
+//            if (device0.enabled && device0.ready && device0.ipAddress != null)
 //            {
 //                worker0.start();
 //            }

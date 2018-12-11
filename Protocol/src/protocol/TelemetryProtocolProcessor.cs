@@ -1,8 +1,9 @@
 ﻿using System;
+using Telemetry.Process;
 using Telemetry.Read;
 using Telemetry.Utilities;
 
-namespace Telemetry.Process
+namespace Telemetry.Protocol
 {
     public class TelemetryProtocolProcessor<T> : IGameDataProcessor
     {

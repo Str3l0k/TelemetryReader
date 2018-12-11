@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Games;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
-using Telemetry.Utilities;
-using Games;
+using Telemetry.Protocol;
 using Telemetry.Read;
-using Telemetry.Process;
+using Telemetry.Utilities;
 
 namespace TelemetryReader
 {
@@ -19,10 +19,16 @@ namespace TelemetryReader
         /* control objects */
         private GameDict games;
         private GameObserver gameObserver;
+        private GameDataWorker gameWorker;
 
         public Window1()
         {
             InitializeComponent();
+
+            var value = new TelemetryValue<UInt16>(0x42)
+            {
+                Value = 42
+            };
 
             games = new GameDict();
             gameObserver = new GameObserver(games.asArray);
@@ -48,15 +54,13 @@ namespace TelemetryReader
         {
             var dataReader = new SharedMemoryDataReader("$R3E", Marshal.SizeOf(typeof(Games.R3E.Data.Structure)));
             var dataProcessor = new TelemetryProtocolProcessor<Games.R3E.Data.Structure>();
-
             dataProcessor.processedCallback += DataProcessor_OnDataProcessed;
 
-            var worker = new GameDataWorker(dataReader, dataProcessor);
+            gameWorker = new GameDataWorker(dataReader, dataProcessor);
+            gameWorker.OnStarting += Worker_OnStarting;
+            gameWorker.OnWorking += Worker_OnWorking;
 
-            worker.OnStarting += Worker_OnStarting;
-            worker.OnWorking += Worker_OnWorking;
-
-            worker.Start();
+            gameWorker.Start();
         }
 
         private void Window1_Closing(object sender, System.ComponentModel.CancelEventArgs e)

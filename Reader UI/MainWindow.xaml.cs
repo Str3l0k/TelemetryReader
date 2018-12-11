@@ -7,7 +7,6 @@
 //using TelemetryReader.src.protocol;
 //using TelemetryReaderWpf.src;
 //using TelemetryReaderWpf.src.device;
-//using TelemetryReaderWpf.src.game;
 //using TelemetryReaderWpf.src.ui;
 
 //namespace TelemetryReader
@@ -44,11 +43,11 @@
 //            //SourceInitialized += Window_SourceInitialized;
 //            //Closing += Window_Closing;
 
-            
+
 
 //            start();
 //        }
-
+        
 //        //[StructLayout(LayoutKind.Sequential)]
 //        //internal struct RAWINPUTDEVICE
 //        //{
@@ -315,42 +314,42 @@
 //        /* UI methods */
 //        private void start()
 //        {
-//            //context.worker0.onDataAvailable += (sender, e) => { updateStatusLabel(); };
-//            //context.worker1.onDataAvailable += (sender, e) => { updateStatusLabel(); };
-//            //context.worker2.onDataAvailable += (sender, e) => { updateStatusLabel(); };
+//            context.worker0.onDataAvailable += (sender, e) => { updateStatusLabel(); };
+//            context.worker1.onDataAvailable += (sender, e) => { updateStatusLabel(); };
+//            context.worker2.onDataAvailable += (sender, e) => { updateStatusLabel(); };
 
-//            //context.device0.configureUI();
-//            //context.device1.configureUI();
-//            //context.device2.configureUI();
+//            context.device0.configureUI();
+//            context.device1.configureUI();
+//            context.device2.configureUI();
 
 //            //Port_0_TextBox.IsEnabled = UIController.ipInputOK(IP_0_TextBox, context.device0);
 //            //Port_1_TextBox.IsEnabled = UIController.ipInputOK(IP_1_TextBox, context.device1);
 //            //Port_2_TextBox.IsEnabled = UIController.ipInputOK(IP_2_TextBox, context.device2);
 
-//            //updateStatusLabel();
+//            updateStatusLabel();
 
-//            ///* auto start game search */
-//            //context.gameSearcher.onGameFound += (sender, e) =>
-//            //{
-//            //    Debug.WriteLine("Game found: " + context.gameSearcher.lastFoundGame.Name);
-//            //    updateGameLabel();
+//            /* auto start game search */
+//            context.gameSearcher.onGameFound += (sender, e) =>
+//            {
+//                Debug.WriteLine("Game found: " + context.gameSearcher.lastFoundGame.Name);
+//                updateGameLabel();
 
-//            //    Game game = context.gameSearcher.lastFoundGame;
-//            //    ProtocolReader protocolTestReader = new ProtocolReader(game.ID);
-//            //    protocolTestReader.reader = context.gameSearcher.lastFoundGame.reader;
-//            //    context.setReaderToWorkers(protocolTestReader);
-//            //    context.startWorkers();
-//            //};
+//                Game game = context.gameSearcher.lastFoundGame;
+//                ProtocolReader protocolTestReader = new ProtocolReader(game.ID);
+//                protocolTestReader.reader = context.gameSearcher.lastFoundGame.reader;
+//                context.setReaderToWorkers(protocolTestReader);
+//                context.startWorkers();
+//            };
 
-//            //context.gameSearcher.onGameExited += (sender, e) =>
-//            //{
-//            //    Debug.WriteLine("Game exited. Restarting search.");
-//            //    context.stopWorkers();
-//            //    context.gameSearcher.start();
-//            //    updateGameLabel();
-//            //};
+//            context.gameSearcher.onGameExited += (sender, e) =>
+//            {
+//                Debug.WriteLine("Game exited. Restarting search.");
+//                context.stopWorkers();
+//                context.gameSearcher.start();
+//                updateGameLabel();
+//            };
 
-//            //context.gameSearcher.start();
+//            context.gameSearcher.start();
 //        }
 
 //        private void stop()

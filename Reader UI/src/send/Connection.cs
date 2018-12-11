@@ -10,7 +10,7 @@
 //        public Connection(Device device)
 //        {
 //            this.device = device;
-//            udpSocket = new UdpClient();         
+//            udpSocket = new UdpClient();
 //        }
 
 //        public void send(byte[] data)

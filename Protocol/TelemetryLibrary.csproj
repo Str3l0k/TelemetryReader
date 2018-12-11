@@ -7,8 +7,8 @@
     <ProjectGuid>{430E6020-34A0-436E-B729-9D19B12C84B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Protocol</RootNamespace>
-    <AssemblyName>Protocol</AssemblyName>
+    <RootNamespace>Telemetry</RootNamespace>
+    <AssemblyName>TelemetryLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -43,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\process\impl\TelemetryProtocolProcessor.cs" />
+    <Compile Include="src\protocol\TelemetryDatapool.cs" />
+    <Compile Include="src\protocol\TelemetryProtocolProcessor.cs" />
+    <Compile Include="src\protocol\TelemetryValue.cs" />
     <Compile Include="src\read\GameData.cs" />
     <Compile Include="src\GameDataWorker.cs" />
     <Compile Include="src\process\IGameDataProcessor.cs" />
@@ -61,7 +65,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\protocol\" />
+    <Folder Include="src\read\impl\games\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

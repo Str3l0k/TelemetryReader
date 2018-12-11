@@ -7,7 +7,7 @@
 //namespace TelemetryReaderWpf.src
 //{
 //    public delegate void ErrorOccured(object sender, EventArgs e);
-//    public delegate void StateChanged(object sender, EventArgs e); 
+//    public delegate void StateChanged(object sender, EventArgs e);
 
 //    public class Device
 //    {
@@ -95,7 +95,7 @@
 
 //        public void configureUI()
 //        {
-//            Application.Current.Dispatcher.Invoke(new Action(() => { UIController.configureDeviceUI(this); }));            
+//            Application.Current.Dispatcher.Invoke(new Action(() => { UIController.configureDeviceUI(this); }));
 //        }
 
 //        private void OnErrorOccured()

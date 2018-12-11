@@ -6,7 +6,7 @@
 //using System.Windows.Interop;
 //using System.Windows.Media;
 //using System.Windows.Media.Imaging;
-//using TelemetryReaderWpf.src.device;
+////using TelemetryReaderWpf.src.device;
 
 //namespace TelemetryReaderWpf.src.ui
 //{
@@ -188,12 +188,12 @@
 //            StringBuilder stringBuilder = new StringBuilder("Status: ");
 
 //            // TODO search and game status
-            
+
 //            if (context.device0.active)
 //            {
 //                stringBuilder.Append("Device 1");
 
-//                if(context.worker0.dataHasBecomeAvailable)
+//                if (context.worker0.dataHasBecomeAvailable)
 //                {
 //                    stringBuilder.Append(" sending");
 //                }
@@ -205,7 +205,7 @@
 
 //            if (context.device1.active)
 //            {
-//                if(context.device0.active)
+//                if (context.device0.active)
 //                {
 //                    stringBuilder.Append(" | ");
 //                }
@@ -241,7 +241,7 @@
 //                }
 //            }
 
-//            if(!context.device0.active && !context.device1.active && !context.device2.active)
+//            if (!context.device0.active && !context.device1.active && !context.device2.active)
 //            {
 //                stringBuilder.Append("Idle");
 //            }

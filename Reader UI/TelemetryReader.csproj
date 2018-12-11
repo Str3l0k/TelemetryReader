@@ -40,6 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +53,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>
@@ -177,7 +179,6 @@
     <Compile Include="src\device\Device.cs" />
     <Compile Include="src\Preferences.cs" />
     <Compile Include="src\reader\impl\iRacingReader.cs" />
-    <Compile Include="src\reader\Reader.cs" />
     <Compile Include="src\protocol\SharedMemoryReader.cs" />
     <Compile Include="src\settings\Config.cs" />
     <Compile Include="src\settings\ConfigOption.cs" />

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading;
 using Telemetry.Process;
 
 namespace Telemetry.Read
 {
-    public delegate void Test();
     public delegate void Starting();
     public delegate void Working();
 
@@ -31,7 +29,8 @@ namespace Telemetry.Read
         public event Working OnWorking;
 
         /* constructor */
-        public GameDataWorker(IGameDataReaderDisposable dataReader, IGameDataProcessor dataProcessor)
+        public GameDataWorker(IGameDataReader dataReader,
+                              IGameDataProcessor dataProcessor)
         {
             this.DataReader = dataReader;
             this.DataProcessor = dataProcessor;
@@ -40,7 +39,8 @@ namespace Telemetry.Read
         /* control access */
         public void Start()
         {
-            if (WorkerThread != null) {
+            if (WorkerThread != null)
+            {
                 Stop();
             }
 
@@ -51,8 +51,6 @@ namespace Telemetry.Read
         public void Stop()
         {
             working = false;
-
-            WorkerThread?.Abort();
             WorkerThread = null;
         }
 
@@ -64,7 +62,7 @@ namespace Telemetry.Read
             OnStarting();
 
             // wait for ready
-            while (!Ready)
+            while (!Ready && working)
             {
                 Thread.Sleep(ReadyWaitDelay);
                 Debug.WriteLine("Worker waiting for data ready.");
@@ -76,7 +74,7 @@ namespace Telemetry.Read
 
             while (working)
             {
-                if(DataReader.DataAvailable)
+                if (DataReader.DataAvailable)
                 {
                     var data = DataReader.ReadData();
                     DataProcessor.ProcessData(data);

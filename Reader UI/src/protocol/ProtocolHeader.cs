@@ -9,7 +9,7 @@ namespace TelemetryReader.src.protocol
     {
         /*  identifier array - TELEMETRYBARZ */
         public static readonly byte[] HEADER_IDENTIFIER = { 0x54, 0x45, 0x4C, 0x45, 0x4D, 0x45, 0x54, 0x52, 0x59, 0x42, 0x41, 0x52, 0x5A };
-        public static readonly byte[] DATA_START = new byte[] { 0x44, 0x41, 0x54, 0x44 };
+        public static readonly byte[] DATA_START = { 0x44, 0x41, 0x54, 0x44 };
 
         /* modifier bits */
         public static int REALTIMEBIT = 1 << 0;
