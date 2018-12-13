@@ -1,9 +1,11 @@
 ﻿using Games;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
-using Telemetry.Protocol;
+using Telemetry.Processing;
+using Telemetry.Protocol.Datapool;
 using Telemetry.Read;
 using Telemetry.Utilities;
 
@@ -25,11 +27,6 @@ namespace TelemetryReader
         {
             InitializeComponent();
 
-            var value = new TelemetryValue<UInt16>(0x42)
-            {
-                Value = 42
-            };
-
             games = new GameDict();
             gameObserver = new GameObserver(games.asArray);
             gameObserver.OnGameFound += (game) =>
@@ -37,7 +34,10 @@ namespace TelemetryReader
                 Debug.WriteLine($"Game found {game.Name}");
                 gameObserver.Stop();
 
-                startR3EWorker();
+                if (game.ID == GameID.RaceRoomExperience)
+                {
+                    startR3EWorker();
+                }
             };
             gameObserver.OnGameExited += (game) =>
             {
@@ -53,7 +53,7 @@ namespace TelemetryReader
         private void startR3EWorker()
         {
             var dataReader = new SharedMemoryDataReader("$R3E", Marshal.SizeOf(typeof(Games.R3E.Data.Structure)));
-            var dataProcessor = new TelemetryProtocolProcessor<Games.R3E.Data.Structure>();
+            var dataProcessor = new RaceRoomDataProcessor();
             dataProcessor.processedCallback += DataProcessor_OnDataProcessed;
 
             gameWorker = new GameDataWorker(dataReader, dataProcessor);
@@ -66,15 +66,16 @@ namespace TelemetryReader
         private void Window1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             gameObserver.Stop();
+            gameWorker.Stop();
         }
 
-        private void DataProcessor_OnDataProcessed(Games.R3E.Data.Structure data)
+        private void DataProcessor_OnDataProcessed(TelemetryDatapool datapool)
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                testLabel.Content = data.Gear.ToString();
-                TestRect.Width = (data.EngineRps / data.MaxEngineRps) * rectWidth;
-                SpeedLabel.Content = (int)(data.CarSpeed * 3.6);
+                testLabel.Content = datapool.car.Gear;
+                TestRect.Width = datapool.car.RPMPercentage * rectWidth;
+                SpeedLabel.Content = (int)(datapool.car.Speed * 3.6);
             }));
         }
 

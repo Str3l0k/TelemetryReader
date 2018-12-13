@@ -139,6 +139,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="src\protocol\datapool\categories\Car.cs" />
+    <Compile Include="src\protocol\datapool\categories\Driver.cs" />
+    <Compile Include="src\protocol\datapool\categories\Session.cs" />
     <Compile Include="src\context\AppContext.cs" />
     <Compile Include="src\device\DeviceUI.cs" />
     <Compile Include="src\protocol\games\assetto\AsettoCorsaData.cs" />
@@ -154,9 +157,6 @@
     <Compile Include="src\protocol\games\pcars\ProjectCarsData.cs" />
     <Compile Include="src\protocol\games\pcars\ProjectCarsReader.cs" />
     <Compile Include="src\protocol\games\raceroom\R3EData.cs" />
-    <Compile Include="src\protocol\datapool\categories\Car.cs" />
-    <Compile Include="src\protocol\datapool\categories\Driver.cs" />
-    <Compile Include="src\protocol\datapool\categories\Session.cs" />
     <Compile Include="src\protocol\GameData.cs" />
     <Compile Include="src\protocol\games\assetto\AssettoCorsaReader.cs" />
     <Compile Include="src\protocol\games\iracing\iRacingReader.cs" />
@@ -173,7 +173,6 @@
     <Compile Include="src\protocol\ProtocolReader.cs" />
     <Compile Include="src\protocol\ProtocolValue.cs" />
     <Compile Include="src\protocol\SendData.cs" />
-    <Compile Include="src\protocol\datapool\TelemetryValues.cs" />
     <Compile Include="src\reader\impl\UDPDataReceiver.cs" />
     <Compile Include="src\send\Connection.cs" />
     <Compile Include="src\device\Device.cs" />

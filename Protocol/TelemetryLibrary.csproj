@@ -45,12 +45,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\protocol\TelemetryDatapool.cs" />
+    <Compile Include="src\processing\games\RaceRoomDataProcessor.cs" />
+    <Compile Include="src\protocol\datapool\IValueWriter.cs" />
+    <Compile Include="src\protocol\datapool\IValueReader.cs" />
+    <Compile Include="src\protocol\datapool\TelemetryDatapool.cs" />
+    <Compile Include="src\protocol\datapool\ValueAccessor.cs" />
     <Compile Include="src\protocol\TelemetryProtocolProcessor.cs" />
-    <Compile Include="src\protocol\TelemetryValue.cs" />
+    <Compile Include="src\protocol\datapool\categories\Car.cs" />
+    <Compile Include="src\protocol\datapool\categories\IDriver.cs" />
+    <Compile Include="src\protocol\datapool\categories\ISession.cs" />
+    <Compile Include="src\protocol\values\categories\CarValues.cs" />
+    <Compile Include="src\protocol\values\categories\DriverValues.cs" />
+    <Compile Include="src\protocol\values\TelemetryValue.cs" />
     <Compile Include="src\read\GameData.cs" />
     <Compile Include="src\GameDataWorker.cs" />
-    <Compile Include="src\process\IGameDataProcessor.cs" />
+    <Compile Include="src\processing\IGameDataProcessor.cs" />
     <Compile Include="src\read\IGameDataReader.cs" />
     <Compile Include="src\read\impl\SharedMemoryDataReader.cs" />
     <Compile Include="src\send\Connection.cs" />

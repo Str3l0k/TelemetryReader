@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using R3EData.Data;
-using TelemetryReader.src.protocol.datapool.categories;
 using System.Runtime.CompilerServices;
 
 namespace TelemetryReader.src.protocol
@@ -26,7 +22,7 @@ namespace TelemetryReader.src.protocol
     public abstract class ProtocolDataConverter<T> : IProtocolDataConverter, IDataWriter
     {
         /* category abstraction */
-        protected Car car;
+        //protected Car car;
         protected Driver driver;
         protected Session session;
 
@@ -43,7 +39,7 @@ namespace TelemetryReader.src.protocol
             valueDictionary = new Dictionary<ushort, ProtocolValue>();
             data = initDataStruct();
 
-            this.car = new Car(this);
+            //this.car = new Car(this);
             this.driver = new Driver(this);
             this.session = new Session(this);
         }
@@ -51,7 +47,7 @@ namespace TelemetryReader.src.protocol
         public Dictionary<ushort, ProtocolValue> convertValues(SendData gameData)
         {
             marshalDataToStruct(gameData);
-            writeCarValues(car, data);
+            //writeCarValues(car, data);
             return valueDictionary;
         }
 
@@ -72,7 +68,7 @@ namespace TelemetryReader.src.protocol
 
         protected abstract T initDataStruct();
 
-        protected abstract void writeCarValues(Car car, T data);
+        //protected abstract void writeCarValues(Car car, T data);
 
         protected abstract void writeDriverValues(Driver driver, T data);
 
@@ -80,7 +76,7 @@ namespace TelemetryReader.src.protocol
 
         protected void writeValues(T data)
         {
-            writeCarValues(car, data);
+            //writeCarValues(car, data);
             writeDriverValues(driver, data);
             writeSessionValues(session, data);
         }
