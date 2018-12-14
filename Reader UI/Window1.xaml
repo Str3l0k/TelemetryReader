@@ -9,7 +9,7 @@
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="48" MinHeight="48" Height="48"/>
-            <RowDefinition MinHeight="420"/>
+            <RowDefinition MinHeight="420" Height="Auto"/>
             <RowDefinition MaxHeight="24"/>
         </Grid.RowDefinitions>
         <Grid.Background>
@@ -49,11 +49,12 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <Canvas HorizontalAlignment="Left" Height="100" Margin="215,62,0,0" VerticalAlignment="Top" Width="100"/>
-            <Label x:Name="SpeedLabel" Content="Label" HorizontalAlignment="Left" Margin="520,212,0,0" VerticalAlignment="Top" Height="105" Width="185" FontSize="72"/>
+            <Label x:Name="SpeedLabel" Content="Label" HorizontalAlignment="Left" Margin="525,207,0,0" VerticalAlignment="Top" Height="105" Width="185" FontSize="72"/>
+            <Canvas x:Name="Canvas"/>
         </Grid>
         <Grid x:Name="FooterBar" Margin="0,0,0,0" Background="#FF2E2E2E" Grid.Row="2" ShowGridLines="True">
             <Label Content="Status: Idle" HorizontalAlignment="Left" Margin="12,0,0,0" Foreground="White" MinWidth="160" FontSize="11" VerticalContentAlignment="Center"/>
         </Grid>
+        <Canvas HorizontalAlignment="Left" Height="100" Margin="1015,252,-321,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>

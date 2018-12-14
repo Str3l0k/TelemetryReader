@@ -54,6 +54,8 @@
     <Compile Include="src\protocol\datapool\categories\Car.cs" />
     <Compile Include="src\protocol\datapool\categories\IDriver.cs" />
     <Compile Include="src\protocol\datapool\categories\ISession.cs" />
+    <Compile Include="src\protocol\transmission\ProtocolPacketConverter.cs" />
+    <Compile Include="src\protocol\transmission\TelemetryValueTypeID.cs" />
     <Compile Include="src\protocol\values\categories\CarValues.cs" />
     <Compile Include="src\protocol\values\categories\DriverValues.cs" />
     <Compile Include="src\protocol\values\TelemetryValue.cs" />

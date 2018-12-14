@@ -1,9 +1,8 @@
-﻿using Telemetry.Protocol;
-
-namespace Telemetry.Protocol.Values
+﻿namespace Telemetry.Protocol.Values
 {
     public static partial class TelemetryValues
     {
+        #region Powertrain/Engine/Fuelstystem
         public static partial class Car
         {
             public static class PowerTrain
@@ -33,7 +32,19 @@ namespace Telemetry.Protocol.Values
                 public readonly static TelemetryValue<float> EngineTorqueMax = new TelemetryValue<float>(556);
                 #endregion
             }
+
+            public static class Fuel
+            {
+                public readonly static TelemetryValue<float> FuelLevel = new TelemetryValue<float>(581);
+                public readonly static TelemetryValue<float> FuelPercentage = new TelemetryValue<float>(582);
+                public readonly static TelemetryValue<float> FuelCapacity = new TelemetryValue<float>(583);
+                public readonly static TelemetryValue<float> FuelPressure = new TelemetryValue<float>(584);
+
+                public readonly static TelemetryValue<float> FuelUsagePerLap = new TelemetryValue<float>(585);
+                public readonly static TelemetryValue<float> FuelUsagePerHour = new TelemetryValue<float>(586);
+            }
         }
+        #endregion
 
         public static partial class Car
         {
@@ -128,20 +139,7 @@ namespace Telemetry.Protocol.Values
             }
         }
 
-        public static partial class Car
-        {
-            public static class Fuel
-            {
-                public readonly static TelemetryValue<float> FuelLevel = new TelemetryValue<float>(581);
-                public readonly static TelemetryValue<float> FuelPercentage = new TelemetryValue<float>(582);
-                public readonly static TelemetryValue<float> FuelCapacity = new TelemetryValue<float>(583);
-                public readonly static TelemetryValue<float> FuelPressure = new TelemetryValue<float>(584);
-
-                public readonly static TelemetryValue<float> FuelUsagePerLap = new TelemetryValue<float>(585);
-                public readonly static TelemetryValue<float> FuelUsagePerHour = new TelemetryValue<float>(586);
-            }
-        }
-
+        #region car physics
         public static partial class Car
         {
             public static class Physics
@@ -173,5 +171,58 @@ namespace Telemetry.Protocol.Values
                 public readonly static TelemetryValue<float> AngularVelocityZ = new TelemetryValue<float>(605);
             }
         }
+        #endregion
+
+        #region Status/Settings/Information
+        public static partial class Car
+        {
+            public static class Status
+            {
+                public readonly static TelemetryValue<bool> OnTrack = new TelemetryValue<bool>(606);
+                public readonly static TelemetryValue<bool> InPitLan = new TelemetryValue<bool>(607);
+                public readonly static TelemetryValue<bool> InPitBox = new TelemetryValue<bool>(608);
+                public readonly static TelemetryValue<bool> ApproachingPitLane = new TelemetryValue<bool>(609);
+                public readonly static TelemetryValue<bool> OffTrack = new TelemetryValue<bool>(610);
+            }
+
+            public static class Settings
+            {
+                public readonly static TelemetryValue<float> ABSLevel = new TelemetryValue<float>(611);
+                public readonly static TelemetryValue<bool> ABSToggle = new TelemetryValue<bool>(612);
+                public readonly static TelemetryValue<float> DRSLevel = new TelemetryValue<float>(613);
+                public readonly static TelemetryValue<bool> DRSToggle = new TelemetryValue<bool>(614);
+
+                public readonly static TelemetryValue<bool> Handbrake = new TelemetryValue<bool>(623);
+                public readonly static TelemetryValue<bool> Headlight = new TelemetryValue<bool>(624);
+                public readonly static TelemetryValue<bool> PitLimiter = new TelemetryValue<bool>(625);
+                public readonly static TelemetryValue<bool> RevLimiter = new TelemetryValue<bool>(626);
+
+                public readonly static TelemetryValue<float> StabilityControlLevel = new TelemetryValue<float>(627);
+                public readonly static TelemetryValue<bool> StabilityControl = new TelemetryValue<bool>(628);
+
+                public readonly static TelemetryValue<float> TractionControlLevel1 = new TelemetryValue<float>(629);
+                public readonly static TelemetryValue<float> TractionControlLevel2 = new TelemetryValue<float>(630);
+                public readonly static TelemetryValue<bool> TractionControl = new TelemetryValue<bool>(631);
+
+                public readonly static TelemetryValue<float> WingSettingFront = new TelemetryValue<float>(632);
+                public readonly static TelemetryValue<float> WingSettingRear = new TelemetryValue<float>(633);
+            }
+
+            public static class Information
+            {
+                public readonly static TelemetryValue<bool> EngineActive = new TelemetryValue<bool>(615);
+                public readonly static TelemetryValue<bool> EngineOff = new TelemetryValue<bool>(616);
+
+                #region warnings
+                public readonly static TelemetryValue<bool> EngineWarning = new TelemetryValue<bool>(617);
+                public readonly static TelemetryValue<bool> OilPressureWarning = new TelemetryValue<bool>(618);
+                public readonly static TelemetryValue<bool> WaterPressureWarning = new TelemetryValue<bool>(619);
+                public readonly static TelemetryValue<bool> OilTemperatureWarning = new TelemetryValue<bool>(620);
+                public readonly static TelemetryValue<bool> WaterTemperatureWarning = new TelemetryValue<bool>(621);
+                public readonly static TelemetryValue<bool> FuelPressureWarning = new TelemetryValue<bool>(622);
+                #endregion
+            }
+        }
+        #endregion
     }
 }

@@ -1,31 +1,26 @@
-﻿//using System.Net.Sockets;
+﻿using System.Net;
+using System.Net.Sockets;
 
-//namespace TelemetryReaderWpf.src
-//{
-//    public class Connection
-//    {
-//        public UdpClient udpSocket { get; private set; }
-//        public Device device { get; private set; }
+namespace TelemetryReaderWpf.src
+{
+    public class Connection
+    {
+        private readonly UdpClient UdpSocket;
+        private readonly IPEndPoint IPEndPoint;
 
-//        public Connection(Device device)
-//        {
-//            this.device = device;
-//            udpSocket = new UdpClient();
-//        }
+        public Connection()
+        {
+            UdpSocket = new UdpClient();
+        }
 
-//        public void send(byte[] data)
-//        {
-//            send(data, data.Length);
-//        }
+        public void Send(byte[] data)
+        {
+            Send(data, data.Length);
+        }
 
-//        public void send(byte[] data, int lenght)
-//        {
-//            udpSocket.Send(data, lenght, device.ipAddress);
-//        }
-
-//        public int getDelay()
-//        {
-//            return device.delay;
-//        }
-//    }
-//}
+        public void Send(byte[] data, int lenght)
+        {
+            UdpSocket.Send(data, lenght, IPEndPoint);
+        }
+    }
+}

@@ -1,9 +1,9 @@
 ﻿using Games;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Shapes;
 using Telemetry.Processing;
 using Telemetry.Protocol.Datapool;
 using Telemetry.Read;
@@ -26,6 +26,8 @@ namespace TelemetryReader
         public Window1()
         {
             InitializeComponent();
+
+            //Canvas.Children.Add();
 
             games = new GameDict();
             gameObserver = new GameObserver(games.asArray);

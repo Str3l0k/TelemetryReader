@@ -1,6 +1,11 @@
 # Telemetry Reader
 The all in one solution for reading, processing and transmitting telemetry for Sim-Racing.
 
+## Current status
+---
+First 
+---
+
 ## Games
 The games module includes necessary information about the games supported.
 This includes some declared identifiers for every game and their known process-names.
@@ -74,3 +79,4 @@ The protocol-datapool uses interfaces based on this structure to reflect classes
 and sub-classes for easy access without having to know specific value IDs.
 
 ## Application
+TODO
