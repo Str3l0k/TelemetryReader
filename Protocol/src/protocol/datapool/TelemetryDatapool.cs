@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // value Aliases
 using TelemetryId = System.UInt16;
@@ -10,6 +11,7 @@ namespace Telemetry.Protocol.Datapool
     {
         /* value dict */
         private readonly Dictionary<TelemetryId, ITelemetryValue> Values;
+        public ITelemetryValue[] ValueArray => Values.Values.ToArray();
 
         /* properties */
         private readonly bool addValuesOnWrite = true;

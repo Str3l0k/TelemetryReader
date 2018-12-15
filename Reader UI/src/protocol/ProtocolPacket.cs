@@ -18,8 +18,10 @@ namespace TelemetryReader.src.protocol
         public ProtocolPacketData()
         {
             packetBuffer = new byte[BUFFER_SIZE];
-            sendData = new SendData();
-            sendData.data = packetBuffer;
+            sendData = new SendData
+            {
+                data = packetBuffer
+            };
         }
 
         public SendData getData(IEnumerable<ProtocolValue> values)

@@ -6,7 +6,7 @@ namespace TelemetryReaderWpf.src
     public class Connection
     {
         private readonly UdpClient UdpSocket;
-        private readonly IPEndPoint IPEndPoint;
+        public IPEndPoint IPEndPoint { get; set; }
 
         public Connection()
         {
@@ -20,7 +20,10 @@ namespace TelemetryReaderWpf.src
 
         public void Send(byte[] data, int lenght)
         {
-            UdpSocket.Send(data, lenght, IPEndPoint);
+            if (IPEndPoint != null)
+            {
+                UdpSocket.Send(data, lenght, IPEndPoint);
+            }
         }
     }
 }

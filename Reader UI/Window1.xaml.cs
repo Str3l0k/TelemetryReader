@@ -1,13 +1,17 @@
 ﻿using Games;
 using System;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Shapes;
 using Telemetry.Processing;
+using Telemetry.Protocol.Transmission;
 using Telemetry.Protocol.Datapool;
 using Telemetry.Read;
 using Telemetry.Utilities;
+using TelemetryReaderWpf.src;
 
 namespace TelemetryReader
 {
@@ -23,11 +27,19 @@ namespace TelemetryReader
         private GameObserver gameObserver;
         private GameDataWorker gameWorker;
 
+        /* protocol transmission objects */
+        private Connection connection = new Connection();
+        private ProtocolPacketConverter packetConverter;
+        private ProtocolPacketHeader packetHeader;
+
         public Window1()
         {
             InitializeComponent();
+            
+            connection.IPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.178.22"), 1337);
 
-            //Canvas.Children.Add();
+            this.packetConverter = new ProtocolPacketConverter();
+            this.packetHeader = new ProtocolPacketHeader(2);
 
             games = new GameDict();
             gameObserver = new GameObserver(games.asArray);
@@ -73,6 +85,16 @@ namespace TelemetryReader
 
         private void DataProcessor_OnDataProcessed(TelemetryDatapool datapool)
         {
+            var valueArray = datapool.ValueArray;
+            var byteData = packetConverter.GetBytesFromValues(valueArray);
+            packetHeader.ValueCount = (short)valueArray.Length;
+
+            var sendData = new byte[byteData.Length + packetHeader.headerBuffer.Length];
+            Buffer.BlockCopy(packetHeader.headerBuffer, 0, sendData, 0, packetHeader.headerBuffer.Length);
+            Buffer.BlockCopy(byteData, 0, sendData, packetHeader.headerBuffer.Length, byteData.Length);
+
+            connection.Send(sendData);
+
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 testLabel.Content = datapool.car.Gear;

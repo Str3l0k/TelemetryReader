@@ -1,6 +1,7 @@
 ﻿using System;
 using Telemetry.Process;
 using Telemetry.Protocol.Datapool;
+using Telemetry.Protocol.Transmission;
 using Telemetry.Read;
 using Telemetry.Utilities;
 
@@ -14,7 +15,8 @@ namespace Telemetry.Protocol
         /* properties */
         protected readonly TelemetryDatapool datapool = new TelemetryDatapool(false);
         protected T dataStructure = Activator.CreateInstance<T>();
-
+        
+        /* constructor */
         protected TelemetryProtocolProcessor()
         {
             InitValues();
@@ -27,7 +29,7 @@ namespace Telemetry.Protocol
             StructMarshal.MarshalRawDataToStruct(bytes, ref dataStructure);
 
             WriteValuesIntoDatapool();
-
+            
             processedCallback?.Invoke(datapool);
         }
 
