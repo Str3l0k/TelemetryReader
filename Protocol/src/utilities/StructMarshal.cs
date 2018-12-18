@@ -12,5 +12,17 @@ namespace Telemetry.Utilities
             result = (T) Marshal.PtrToStructure(ptr, result.GetType());
             Marshal.FreeHGlobal(ptr);
         }
+
+        public static bool MarshalStructToRawData<T>(T obj, ref byte[] data, int dstOffset)
+        {
+            var objSize = Marshal.SizeOf(typeof(T));
+
+            var ptr = Marshal.AllocHGlobal(objSize);
+            Marshal.StructureToPtr(obj, ptr, false);
+            Marshal.Copy(ptr, data, dstOffset, objSize);
+            Marshal.FreeHGlobal(ptr);
+
+            return true;
+        }
     }
 }

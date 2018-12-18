@@ -102,7 +102,7 @@ namespace Telemetry.Protocol.Datapool
 
             if (Values.ContainsKey(id) && Values[id] is TelemetryValue<T> telemetryValue)
             {
-                telemetryValue.Value = value;
+                telemetryValue.Current = value;
             }
 #if DEBUG
             else
@@ -122,12 +122,12 @@ namespace Telemetry.Protocol.Datapool
             WriteValue(id, value);
         }
 
-        public void WriteStringValue(TelemetryId id, string value)
+        public void WriteString(TelemetryId id, string value)
         {
             WriteValue(id, value);
         }
 
-        public void WriteBoolValue(TelemetryId id, bool value)
+        public void WriteBool(TelemetryId id, bool value)
         {
             WriteValue(id, value);
         }
@@ -138,7 +138,7 @@ namespace Telemetry.Protocol.Datapool
         {
             if (Values.ContainsKey(id) && Values[id] is TelemetryValue<T> telemetryValue)
             {
-                return telemetryValue.Value;
+                return telemetryValue.Current;
             }
 
             return default;

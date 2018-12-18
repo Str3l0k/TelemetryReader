@@ -100,7 +100,7 @@ namespace Telemetry.Protocol.Transmission
 
             Buffer.BlockCopy(valueTypeData[TelemetryValueTypeID.Float], 0, data, 0, sizeof(sbyte)); // type ID
             Buffer.BlockCopy(BitConverter.GetBytes(f.ID), 0, data, sizeof(sbyte), sizeof(UInt16)); // value ID
-            Buffer.BlockCopy(BitConverter.GetBytes(f.Value), 0, data, sizeof(sbyte) + sizeof(UInt16), sizeof(float)); // value 
+            Buffer.BlockCopy(BitConverter.GetBytes(f.Current), 0, data, sizeof(sbyte) + sizeof(UInt16), sizeof(float)); // value 
 
             return data;
         }
@@ -111,7 +111,7 @@ namespace Telemetry.Protocol.Transmission
 
             Buffer.BlockCopy(valueTypeData[TelemetryValueTypeID.Integer], 0, data, 0, sizeof(sbyte)); // type ID
             Buffer.BlockCopy(BitConverter.GetBytes(i.ID), 0, data, sizeof(sbyte), sizeof(UInt16)); // value ID
-            Buffer.BlockCopy(BitConverter.GetBytes(i.Value), 0, data, sizeof(sbyte) + sizeof(UInt16), sizeof(int)); // value 
+            Buffer.BlockCopy(BitConverter.GetBytes(i.Current), 0, data, sizeof(sbyte) + sizeof(UInt16), sizeof(int)); // value 
 
             return data;
         }
@@ -122,19 +122,19 @@ namespace Telemetry.Protocol.Transmission
 
             Buffer.BlockCopy(valueTypeData[TelemetryValueTypeID.Bool], 0, data, 0, sizeof(sbyte)); // type ID
             Buffer.BlockCopy(BitConverter.GetBytes(b.ID), 0, data, sizeof(sbyte), sizeof(UInt16)); // value ID
-            Buffer.BlockCopy(BitConverter.GetBytes(b.Value ? (sbyte)1 : (sbyte)0), 0, data, sizeof(sbyte) + sizeof(UInt16), sizeof(int)); // value 
+            Buffer.BlockCopy(BitConverter.GetBytes(b.Current ? (sbyte)1 : (sbyte)0), 0, data, sizeof(sbyte) + sizeof(UInt16), sizeof(int)); // value 
 
             return data;
         }
 
         private byte[] GetEncodedStringBytes(TelemetryValue<string> s)
         {
-            byte[] encodedStringData = Encoding.UTF8.GetBytes(s.Value);
+            byte[] encodedStringData = Encoding.UTF8.GetBytes(s.Current);
             byte[] data = CreateNewValueBuffer(/* string size parameter */ sizeof(UInt16) + encodedStringData.Length);
 
             Buffer.BlockCopy(valueTypeData[TelemetryValueTypeID.String], 0, data, 0, sizeof(sbyte)); // type ID
             Buffer.BlockCopy(BitConverter.GetBytes(s.ID), 0, data, sizeof(sbyte), sizeof(UInt16)); // value ID
-            Buffer.BlockCopy(BitConverter.GetBytes((UInt16)s.Value.Length), 0, data, sizeof(sbyte) + sizeof(UInt16), sizeof(UInt16)); // string size
+            Buffer.BlockCopy(BitConverter.GetBytes((UInt16)s.Current.Length), 0, data, sizeof(sbyte) + sizeof(UInt16), sizeof(UInt16)); // string size
             Buffer.BlockCopy(encodedStringData, 0, data, sizeof(sbyte) + sizeof(UInt16) + sizeof(UInt16), encodedStringData.Length);
 
             return data;

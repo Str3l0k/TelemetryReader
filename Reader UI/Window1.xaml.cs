@@ -89,9 +89,9 @@ namespace TelemetryReader
             var byteData = packetConverter.GetBytesFromValues(valueArray);
             packetHeader.ValueCount = (short)valueArray.Length;
 
-            var sendData = new byte[byteData.Length + packetHeader.headerBuffer.Length];
-            Buffer.BlockCopy(packetHeader.headerBuffer, 0, sendData, 0, packetHeader.headerBuffer.Length);
-            Buffer.BlockCopy(byteData, 0, sendData, packetHeader.headerBuffer.Length, byteData.Length);
+            var sendData = new byte[byteData.Length + packetHeader.HeaderData.Length];
+            Buffer.BlockCopy(packetHeader.HeaderData, 0, sendData, 0, packetHeader.HeaderData.Length);
+            Buffer.BlockCopy(byteData, 0, sendData, packetHeader.HeaderData.Length, byteData.Length);
 
             connection.Send(sendData);
 

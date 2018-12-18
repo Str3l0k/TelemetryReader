@@ -6,7 +6,7 @@ namespace Telemetry.Protocol.Datapool
     {
         void WriteFloat(UInt16 id, float value);
         void WriteInteger(UInt16 id, int value);
-        void WriteStringValue(UInt16 id, string value);
-        void WriteBoolValue(UInt16 id, bool value);
+        void WriteString(UInt16 id, string value);
+        void WriteBool(UInt16 id, bool value);
     }
 }

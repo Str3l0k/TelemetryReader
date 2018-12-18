@@ -1,6 +1,4 @@
-﻿using System;
-
-using TelemetryId = System.UInt16;
+﻿using TelemetryId = System.UInt16;
 
 namespace Telemetry.Protocol.Datapool
 {
@@ -36,6 +34,26 @@ namespace Telemetry.Protocol.Datapool
         protected void WriteInteger(TelemetryId id, int value)
         {
             valueWriter.WriteInteger(id, value);
+        }
+
+        protected bool ReadBool(TelemetryId id)
+        {
+            return valueReader.ReadBool(id);
+        }
+
+        protected void WriteBool(TelemetryId id, bool value)
+        {
+            valueWriter.WriteBool(id, value);
+        }
+
+        protected string ReadString(TelemetryId id)
+        {
+            return valueReader.ReadString(id);
+        }
+
+        protected void WriteString(TelemetryId id, string value)
+        {
+            valueWriter.WriteString(id, value);
         }
         #endregion
     }

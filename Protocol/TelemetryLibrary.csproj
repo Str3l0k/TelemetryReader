@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\processing\calculation\TelemetryCalculation.cs" />
     <Compile Include="src\processing\games\RaceRoomDataProcessor.cs" />
     <Compile Include="src\protocol\datapool\IValueWriter.cs" />
     <Compile Include="src\protocol\datapool\IValueReader.cs" />
@@ -57,8 +58,8 @@
     <Compile Include="src\protocol\datapool\ValueAccessor.cs" />
     <Compile Include="src\protocol\TelemetryProtocolProcessor.cs" />
     <Compile Include="src\protocol\datapool\categories\Car.cs" />
-    <Compile Include="src\protocol\datapool\categories\IDriver.cs" />
-    <Compile Include="src\protocol\datapool\categories\ISession.cs" />
+    <Compile Include="src\protocol\datapool\categories\Driver.cs" />
+    <Compile Include="src\protocol\datapool\categories\Session.cs" />
     <Compile Include="src\protocol\transmission\ProtocolHeader.cs" />
     <Compile Include="src\protocol\transmission\ProtocolPacketConverter.cs" />
     <Compile Include="src\protocol\transmission\TelemetryValueTypeID.cs" />
