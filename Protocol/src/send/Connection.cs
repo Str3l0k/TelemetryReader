@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Telemetry.Send
 {
-    interface IConnection
+    public interface IConnection
     {
         void Send(byte[] data);
     }

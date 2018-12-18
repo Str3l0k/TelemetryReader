@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -13,11 +14,15 @@ namespace Telemetry.Protocol.Transmission
         /* pre-encoded value type IDs */
         private readonly Dictionary<TelemetryValueTypeID, byte[]> valueTypeData;
 
+        /* properties */
+        private readonly bool skipUnchangedValues = false;
+
         /* constructor */
-        public ProtocolPacketConverter(int startBufferSize = 2048)
+        public ProtocolPacketConverter(int startBufferSize = 2048, bool skipUnchangedValues = false)
         {
             this.buffer = new byte[startBufferSize];
             this.valueTypeData = new Dictionary<TelemetryValueTypeID, byte[]>();
+            this.skipUnchangedValues = skipUnchangedValues;
 
             PreEncodeValueTypeIDs();
         }
@@ -40,7 +45,16 @@ namespace Telemetry.Protocol.Transmission
 
             foreach (ITelemetryValue value in values)
             {
-                CopyValue(value, ref currentOffset); // DAFUQ? 
+                if (!skipUnchangedValues || value.Changed)
+                {
+                    CopyValue(value, ref currentOffset);
+                }
+#if DEBUG
+                else
+                {
+                    Debug.WriteLine($"Skipping unchanged value. ID: {value.ID}");
+                }
+#endif
             }
 
             var data = new byte[currentOffset];

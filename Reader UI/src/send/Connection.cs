@@ -1,9 +1,10 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using Telemetry.Send;
 
 namespace TelemetryReaderWpf.src
 {
-    public class Connection
+    public class Connection : IConnection
     {
         private readonly UdpClient UdpSocket;
         public IPEndPoint IPEndPoint { get; set; }

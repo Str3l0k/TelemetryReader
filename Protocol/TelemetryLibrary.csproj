@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\processing\calculation\TelemetryCalculation.cs" />
     <Compile Include="src\processing\games\RaceRoomDataProcessor.cs" />
+    <Compile Include="src\protocol\ITelemetryConverter.cs" />
     <Compile Include="src\protocol\datapool\IValueWriter.cs" />
     <Compile Include="src\protocol\datapool\IValueReader.cs" />
     <Compile Include="src\protocol\datapool\TelemetryDatapool.cs" />

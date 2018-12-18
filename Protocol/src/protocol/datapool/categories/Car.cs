@@ -46,6 +46,36 @@ namespace Telemetry.Protocol
         }
         #endregion
 
+        #region Fuel
+        public float FuelLevel
+        {
+            get => ReadFloat(TelemetryValues.Car.Fuel.FuelLevel.ID);
+            set => WriteFloat(TelemetryValues.Car.Fuel.FuelLevel.ID, value);
+        }
+
+        public float FuelPercentage
+        {
+            get => ReadFloat(TelemetryValues.Car.Fuel.FuelPercentage.ID);
+            set => WriteFloat(TelemetryValues.Car.Fuel.FuelPercentage.ID, value);
+        }
+
+        public float FuelCapacity
+        {
+            get => ReadFloat(TelemetryValues.Car.Fuel.FuelCapacity.ID);
+            set => WriteFloat(TelemetryValues.Car.Fuel.FuelCapacity.ID, value);
+        }
+
+        public void CalculateFuelPercentage()
+        {
+            FuelPercentage = FuelLevel / FuelCapacity;
+        }
+
+        public void CalculateFuelLevel()
+        {
+            FuelLevel = FuelPercentage * FuelCapacity;
+        }
+        #endregion
+
         #region Physics
         public float Speed
         {

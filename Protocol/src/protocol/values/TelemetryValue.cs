@@ -5,9 +5,8 @@ namespace Telemetry.Protocol
     public interface ITelemetryValue
     {
         UInt16 ID { get; }
+        bool Changed { get; }
     }
-
-
 
     public class TelemetryValue<T> : ITelemetryValue
     {
@@ -15,9 +14,13 @@ namespace Telemetry.Protocol
 
         /* properties */
         public UInt16 ID { get; private set; }
+        bool ITelemetryValue.Changed
+        {
+            get => !Current.Equals(Previous);
+        }
 
         private int CurrentIndex = 0;
-        private bool Changed = false;
+        //private bool Changed = false;
         private T[] Values { get; set; }
 
         /* constructor */
@@ -43,17 +46,16 @@ namespace Telemetry.Protocol
         {
             get
             {
-                Changed = false;
+                //Changed = false;
                 return Values[CurrentIndex];
             }
             set
             {
-                Changed = !Current.Equals(value);
+                //Changed = !Current.Equals(value);
                 Values[NextIndex] = value;
                 CurrentIndex = NextIndex;
             }
         }
-
         #endregion
     }
 }

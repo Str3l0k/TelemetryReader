@@ -56,6 +56,7 @@ namespace TelemetryReader
             gameObserver.OnGameExited += (game) =>
             {
                 Debug.WriteLine($"Game exited {game.Name}");
+                gameWorker.Stop();
                 gameObserver.Start();
             };
 
@@ -67,7 +68,7 @@ namespace TelemetryReader
         private void startR3EWorker()
         {
             var dataReader = new SharedMemoryDataReader("$R3E", Marshal.SizeOf(typeof(Games.R3E.Data.Structure)));
-            var dataProcessor = new RaceRoomDataProcessor();
+            var dataProcessor = new RaceRoomDataProcessor(connection);
             dataProcessor.processedCallback += DataProcessor_OnDataProcessed;
 
             gameWorker = new GameDataWorker(dataReader, dataProcessor);
@@ -85,15 +86,15 @@ namespace TelemetryReader
 
         private void DataProcessor_OnDataProcessed(TelemetryDatapool datapool)
         {
-            var valueArray = datapool.ValueArray;
-            var byteData = packetConverter.GetBytesFromValues(valueArray);
-            packetHeader.ValueCount = (short)valueArray.Length;
+            //var valueArray = datapool.ValueArray;
+            //var byteData = packetConverter.GetBytesFromValues(valueArray);
+            //packetHeader.ValueCount = (short)valueArray.Length;
 
-            var sendData = new byte[byteData.Length + packetHeader.HeaderData.Length];
-            Buffer.BlockCopy(packetHeader.HeaderData, 0, sendData, 0, packetHeader.HeaderData.Length);
-            Buffer.BlockCopy(byteData, 0, sendData, packetHeader.HeaderData.Length, byteData.Length);
+            //var sendData = new byte[byteData.Length + packetHeader.HeaderData.Length];
+            //Buffer.BlockCopy(packetHeader.HeaderData, 0, sendData, 0, packetHeader.HeaderData.Length);
+            //Buffer.BlockCopy(byteData, 0, sendData, packetHeader.HeaderData.Length, byteData.Length);
 
-            connection.Send(sendData);
+            //connection.Send(sendData);
 
             Dispatcher.BeginInvoke(new Action(() =>
             {
