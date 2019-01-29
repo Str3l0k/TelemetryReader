@@ -33,6 +33,9 @@ namespace Games
 
             dictionary.Add((int) GameID.ProjectCars2,
                 new Game(GameID.ProjectCars2, GameInformation.Processes.ProjectCars2Processes));
+
+            dictionary.Add((int)GameID.DirtRally,
+                new Game(GameID.DirtRally, GameInformation.Processes.DirtRallyProcesses));
         }
     }
 }

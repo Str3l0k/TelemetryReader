@@ -37,7 +37,7 @@ namespace Telemetry.Protocol
 
         #region indices
         private int NextIndex => (CurrentIndex + 1) % Values.Length;
-        private int PreviousIndex => (CurrentIndex - 1) < 0 ? Values.Length - 1 : (CurrentIndex - 1);
+        private int PreviousIndex => (CurrentIndex - 1) < 0 ? (Values.Length) - 1 : (CurrentIndex - 1);
         #endregion
 
         #region values
@@ -46,12 +46,10 @@ namespace Telemetry.Protocol
         {
             get
             {
-                //Changed = false;
                 return Values[CurrentIndex];
             }
             set
             {
-                //Changed = !Current.Equals(value);
                 Values[NextIndex] = value;
                 CurrentIndex = NextIndex;
             }

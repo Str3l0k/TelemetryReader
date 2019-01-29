@@ -2,16 +2,14 @@
 using System;
 using System.Diagnostics;
 using System.Net;
-using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Shapes;
+using Telemetry.Connection;
 using Telemetry.Processing;
-using Telemetry.Protocol.Transmission;
 using Telemetry.Protocol.Datapool;
+using Telemetry.Protocol.Transmission;
 using Telemetry.Read;
 using Telemetry.Utilities;
-using TelemetryReaderWpf.src;
 
 namespace TelemetryReader
 {
@@ -23,59 +21,48 @@ namespace TelemetryReader
         private double rectWidth = -1;
 
         /* control objects */
-        private GameDict games;
+        private GameDict games = new GameDict();
         private GameObserver gameObserver;
         private GameDataWorker gameWorker;
 
         /* protocol transmission objects */
-        private Connection connection = new Connection();
-        private ProtocolPacketConverter packetConverter;
-        private ProtocolPacketHeader packetHeader;
+        private TransmitConnectionWrapper connections = new TransmitConnectionWrapper();
+        private ProtocolPacketConverter packetConverter = new ProtocolPacketConverter();
+        private ProtocolPacketHeader packetHeader = new ProtocolPacketHeader(2);
 
+        #region init
         public Window1()
         {
+            InitializeGameObserver();
+            InitializeUI();
             InitializeComponent();
-            
-            connection.IPEndPoint = new IPEndPoint(IPAddress.Parse("192.168.178.22"), 1337);
 
-            this.packetConverter = new ProtocolPacketConverter();
-            this.packetHeader = new ProtocolPacketHeader(2);
+            var connection = new UDPConnection(new IPEndPoint(IPAddress.Parse("192.168.178.22"), 1337));
+            var connection2 = new UDPConnection(new IPEndPoint(IPAddress.Parse("192.168.178.24"), 1337));
 
-            games = new GameDict();
-            gameObserver = new GameObserver(games.asArray);
-            gameObserver.OnGameFound += (game) =>
-            {
-                Debug.WriteLine($"Game found {game.Name}");
-                gameObserver.Stop();
-
-                if (game.ID == GameID.RaceRoomExperience)
-                {
-                    startR3EWorker();
-                }
-            };
-            gameObserver.OnGameExited += (game) =>
-            {
-                Debug.WriteLine($"Game exited {game.Name}");
-                gameWorker.Stop();
-                gameObserver.Start();
-            };
-
-            gameObserver.Start();
-
-            this.Closing += Window1_Closing;
+            connections.Add(connection);
+            connections.Add(connection2);
         }
 
-        private void startR3EWorker()
+        private void InitializeUI()
         {
-            var dataReader = new SharedMemoryDataReader("$R3E", Marshal.SizeOf(typeof(Games.R3E.Data.Structure)));
-            var dataProcessor = new RaceRoomDataProcessor(connection);
-            dataProcessor.processedCallback += DataProcessor_OnDataProcessed;
+            this.Closing += Window1_Closing;
+            this.Initialized += Window1_Initialized;
+        }
 
-            gameWorker = new GameDataWorker(dataReader, dataProcessor);
-            gameWorker.OnStarting += Worker_OnStarting;
-            gameWorker.OnWorking += Worker_OnWorking;
+        private void InitializeGameObserver()
+        {
+            gameObserver = new GameObserver(games.asArray);
+            gameObserver.OnGameFound += OnGameFound;
+            gameObserver.OnGameExited += OnGameExited;
+        }
+        #endregion
 
-            gameWorker.Start();
+        #region Window events
+        private void Window1_Initialized(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Window 1 init");
+            gameObserver.Start();
         }
 
         private void Window1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -83,19 +70,40 @@ namespace TelemetryReader
             gameObserver.Stop();
             gameWorker.Stop();
         }
+        #endregion
+
+        #region GameObserver
+        private void OnGameFound(Game game)
+        {
+            Debug.WriteLine($"Game found {game.Name}");
+            gameObserver.Stop();
+
+            // TODO check game id
+            // TODO start worker based on found game
+
+            StartWorker(game.ID);
+        }
+
+        private void OnGameExited(Game game)
+        {
+            Debug.WriteLine($"Game exited {game.Name}");
+            gameWorker.Stop();
+            gameObserver.Start();
+        }
+        #endregion
+
+        #region Data work and processing
+        private void StartWorker(GameID gameID)
+        {
+            gameWorker = games.WorkerForGame(gameID, connections, DataProcessor_OnDataProcessed);
+            gameWorker.OnStarting += Worker_OnStarting;
+            gameWorker.OnWorking += Worker_OnWorking;
+
+            gameWorker.Start();
+        }
 
         private void DataProcessor_OnDataProcessed(TelemetryDatapool datapool)
         {
-            //var valueArray = datapool.ValueArray;
-            //var byteData = packetConverter.GetBytesFromValues(valueArray);
-            //packetHeader.ValueCount = (short)valueArray.Length;
-
-            //var sendData = new byte[byteData.Length + packetHeader.HeaderData.Length];
-            //Buffer.BlockCopy(packetHeader.HeaderData, 0, sendData, 0, packetHeader.HeaderData.Length);
-            //Buffer.BlockCopy(byteData, 0, sendData, packetHeader.HeaderData.Length, byteData.Length);
-
-            //connection.Send(sendData);
-
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 testLabel.Content = datapool.car.Gear;
@@ -113,6 +121,7 @@ namespace TelemetryReader
         {
             Debug.WriteLine("Worker now starting.");
         }
+        #endregion
 
         private void TestRect_Initialized(object sender, EventArgs e)
         {
@@ -126,5 +135,7 @@ namespace TelemetryReader
                 rectWidth = TestRect.ActualWidth;
             }
         }
+
+
     }
 }

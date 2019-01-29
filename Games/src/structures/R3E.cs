@@ -5,10 +5,14 @@ namespace Games
 {
     namespace R3E
     {
+        public static class SharedMemory
+        {
+            public static readonly string Name = "$R3E";
+            public static readonly int Size = Marshal.SizeOf(typeof(Data.Structure));
+        }
+
         class Constant
         {
-            public const string SharedMemoryName = "$R3E";
-
             enum VersionMajor
             {
                 // Major version number to test against

@@ -1,12 +1,12 @@
 ﻿using Telemetry.Protocol;
 using Telemetry.Protocol.Values;
-using Telemetry.Send;
+using Telemetry.Connection;
 
 namespace Telemetry.Processing
 {
     public class RaceRoomDataProcessor : TelemetryProtocolProcessor<Games.R3E.Data.Structure>
     {
-        public RaceRoomDataProcessor(IConnection connection) : base(connection)
+        public RaceRoomDataProcessor(ITransmitConnection connection) : base(connection)
         {
 
         }

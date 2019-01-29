@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using Telemetry.Process;
+using Telemetry.Connection;
+using Telemetry.Processing;
 using Telemetry.Processing.Calculation;
 using Telemetry.Protocol.Datapool;
 using Telemetry.Protocol.Transmission;
 using Telemetry.Read;
-using Telemetry.Send;
 using Telemetry.Utilities;
 
 namespace Telemetry.Protocol
 {
     public abstract class TelemetryProtocolProcessor<T> : IGameDataProcessor
     {
-        // event after conversion
-        public Action<TelemetryDatapool> processedCallback;
+        public Action<TelemetryDatapool> ProcessedCallback { get; set; }
 
         /* submodules */
         protected readonly List<ITelemetryCalculation> calculations = new List<ITelemetryCalculation>();
-        protected IConnection connection;
+        protected ITransmitConnection connection;
         private ProtocolPacketConverter packetConverter;
         private ProtocolPacketHeader packetHeader;
 
         /* data properties */
         protected T dataStructure = Activator.CreateInstance<T>();
         protected readonly TelemetryDatapool datapool = new TelemetryDatapool(false);
+
 
         /* constructor */
         protected TelemetryProtocolProcessor()
@@ -33,11 +33,11 @@ namespace Telemetry.Protocol
             packetHeader = new ProtocolPacketHeader(2);
         }
 
-        protected TelemetryProtocolProcessor(IConnection connection) : this()
+        protected TelemetryProtocolProcessor(ITransmitConnection connection) : this()
         {
             this.connection = connection;
         }
-        
+
         /* */
         public void AddCalculation(ITelemetryCalculation calculation)
         {
@@ -60,7 +60,7 @@ namespace Telemetry.Protocol
             {
                 calculation.Calculate(datapool);
             });
-            
+
             if (connection != null)
             {
                 // convert datapool to raw data
@@ -74,10 +74,10 @@ namespace Telemetry.Protocol
                 Buffer.BlockCopy(byteData, 0, sendData, packetHeader.HeaderData.Length, byteData.Length);
 
                 // transmit packet through connection
-                connection.Send(sendData);
+                connection.Send(ref sendData);
             }
 
-            processedCallback?.Invoke(datapool);
+            ProcessedCallback?.Invoke(datapool);
         }
 
         private void ConvertRawDataToStructure(GameData data)

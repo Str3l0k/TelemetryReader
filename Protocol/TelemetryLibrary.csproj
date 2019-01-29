@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Telemetry</RootNamespace>
     <AssemblyName>TelemetryLibrary</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\games\processing\DirtRallyDataProcessor.cs" />
     <Compile Include="src\processing\calculation\TelemetryCalculation.cs" />
-    <Compile Include="src\processing\games\RaceRoomDataProcessor.cs" />
+    <Compile Include="src\games\GamesExtension.cs" />
+    <Compile Include="src\games\processing\RaceRoomDataProcessor.cs" />
     <Compile Include="src\protocol\ITelemetryConverter.cs" />
     <Compile Include="src\protocol\datapool\IValueWriter.cs" />
     <Compile Include="src\protocol\datapool\IValueReader.cs" />
@@ -71,8 +73,12 @@
     <Compile Include="src\GameDataWorker.cs" />
     <Compile Include="src\processing\IGameDataProcessor.cs" />
     <Compile Include="src\read\IGameDataReader.cs" />
+    <Compile Include="src\connection\IConnection.cs" />
+    <Compile Include="src\connection\ConnectionWrapper.cs" />
+    <Compile Include="src\connection\impl\TCPConnection.cs" />
+    <Compile Include="src\connection\impl\UDPConnection.cs" />
     <Compile Include="src\read\impl\SharedMemoryDataReader.cs" />
-    <Compile Include="src\send\Connection.cs" />
+    <Compile Include="src\read\impl\UDPDataReader.cs" />
     <Compile Include="src\utilities\GameObserver.cs" />
     <Compile Include="src\utilities\SystemProcessObserver.cs" />
     <Compile Include="src\utilities\StructMarshal.cs" />
@@ -84,7 +90,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\read\impl\games\" />
+    <Folder Include="src\games\calculations\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

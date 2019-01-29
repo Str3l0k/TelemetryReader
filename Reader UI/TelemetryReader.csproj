@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TelemetryReader</RootNamespace>
     <AssemblyName>TelemetryReader</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -145,8 +145,6 @@
     <Compile Include="src\protocol\datapool\categories\Car.cs" />
     <Compile Include="src\protocol\datapool\categories\Driver.cs" />
     <Compile Include="src\protocol\datapool\categories\Session.cs" />
-    <Compile Include="src\context\AppContext.cs" />
-    <Compile Include="src\device\DeviceUI.cs" />
     <Compile Include="src\protocol\games\assetto\AsettoCorsaData.cs" />
     <Compile Include="src\protocol\games\assetto\AssettoCorsaGraphicReader.cs" />
     <Compile Include="src\protocol\games\assetto\AssettoCorsaStaticReader.cs" />
@@ -176,8 +174,6 @@
     <Compile Include="src\protocol\ProtocolValue.cs" />
     <Compile Include="src\protocol\SendData.cs" />
     <Compile Include="src\reader\impl\UDPDataReceiver.cs" />
-    <Compile Include="src\send\Connection.cs" />
-    <Compile Include="src\device\Device.cs" />
     <Compile Include="src\Preferences.cs" />
     <Compile Include="src\reader\impl\iRacingReader.cs" />
     <Compile Include="src\protocol\SharedMemoryReader.cs" />
@@ -188,7 +184,6 @@
     <Compile Include="src\settings\ConfigWriter.cs" />
     <Compile Include="src\settings\impl\TelemetryReaderConfig.cs" />
     <Compile Include="src\ui\UIController.cs" />
-    <Compile Include="src\send\Worker.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>

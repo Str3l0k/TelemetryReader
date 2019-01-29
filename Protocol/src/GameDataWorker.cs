@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading;
-using Telemetry.Process;
+using Telemetry.Processing;
 
 namespace Telemetry.Read
 {
