@@ -18,6 +18,12 @@ namespace Telemetry.Protocol.Datapool
 
         /* value category access apis */
         public Car car;
+
+        internal void InitValues(object telemetrValues)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDriver driver;
         public ISession session;
 

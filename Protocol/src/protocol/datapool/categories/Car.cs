@@ -10,6 +10,26 @@ namespace Telemetry.Protocol
         }
 
         /* classes */
+        #region aero
+        public float AeroCondition
+        {
+            get => ReadFloat(TelemetryValues.Car.Body.AeroConditionAll.ID);
+            set => WriteFloat(TelemetryValues.Car.Body.AeroConditionAll.ID, value);
+        }
+
+        public float AeroConditionFront
+        {
+            get => ReadFloat(TelemetryValues.Car.Body.AeroConditionFront.ID);
+            set => WriteFloat(TelemetryValues.Car.Body.AeroConditionFront.ID, value);
+        }
+
+        public float AeroConditionRear
+        {
+            get => ReadFloat(TelemetryValues.Car.Body.AeroConditionRear.ID);
+            set => WriteFloat(TelemetryValues.Car.Body.AeroConditionRear.ID, value);
+        }
+        #endregion
+
         #region powertrain
         public int Gear
         {
@@ -20,29 +40,24 @@ namespace Telemetry.Protocol
         public float RPM
         {
             get => ReadFloat(TelemetryValues.Car.PowerTrain.RPM.ID);
-            set
-            {
-                WriteFloat(TelemetryValues.Car.PowerTrain.RPM.ID, value);
-                var rpmMax = ReadFloat(TelemetryValues.Car.PowerTrain.RPMMax.ID);
-                RPMPercentage = value / rpmMax;
-            }
+            set => WriteFloat(TelemetryValues.Car.PowerTrain.RPM.ID, value);
         }
 
         public float RPMMax
         {
             get => ReadFloat(TelemetryValues.Car.PowerTrain.RPMMax.ID);
-            set
-            {
-                WriteFloat(TelemetryValues.Car.PowerTrain.RPMMax.ID, value);
-                var rpm = ReadFloat(TelemetryValues.Car.PowerTrain.RPM.ID);
-                RPMPercentage = rpm / value;
-            }
+            set => WriteFloat(TelemetryValues.Car.PowerTrain.RPMMax.ID, value);
         }
 
         public float RPMPercentage
         {
             get => ReadFloat(TelemetryValues.Car.PowerTrain.RPMPercentage.ID);
-            set => WriteFloat(TelemetryValues.Car.PowerTrain.RPMPercentage.ID, value);
+            internal set => WriteFloat(TelemetryValues.Car.PowerTrain.RPMPercentage.ID, value);
+        }
+
+        public void CalculateRPMPercentage()
+        {
+            RPMPercentage = RPM / RPMMax;
         }
         #endregion
 

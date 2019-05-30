@@ -18,7 +18,9 @@ namespace Telemetry.Processing
                         Games.R3E.SharedMemory.Name,
                         Games.R3E.SharedMemory.Size);
                 case GameID.ProjectCars2:
-                    throw new NotImplementedException();
+                    return new SharedMemoryDataReader(
+                        Games.ProjectCars.SharedMemory.Name,
+                        Games.ProjectCars.SharedMemory.Size);
                 case GameID.DirtRally:
                     return new UDPDataReader(20777, Games.Codemasters.DataInfo.ExtraData3Size);
                 default:
@@ -26,14 +28,17 @@ namespace Telemetry.Processing
             }
         }
 
-        public static IGameDataProcessor DataProcessForGame(this GameDict games, GameID ID, ITransmitConnection connection)
+        public static IGameDataProcessor DataProcessForGame(
+            this GameDict games,
+            GameID ID,
+            ITransmitConnection connection)
         {
             switch (ID)
             {
                 case GameID.RaceRoomExperience:
                     return new RaceRoomDataProcessor(connection);
                 case GameID.ProjectCars2:
-                    throw new NotImplementedException();
+                    return new ProjectCarsDataProcessor(connection);
                 case GameID.DirtRally:
                     return new DirtRallyDataReader(connection);
                 default:

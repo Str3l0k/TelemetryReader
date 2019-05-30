@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Telemetry.Connection;
 using Telemetry.Protocol;
+using Telemetry.Protocol.Datapool;
 using Telemetry.Protocol.Values;
 
 namespace Telemetry.Processing
@@ -47,7 +48,7 @@ namespace Telemetry.Processing
         //{
         //}
 
-        internal override void InitValues()
+        internal override void InitValues(TelemetryDatapool datapool)
         {
             datapool.InitValues(
                TelemetryValues.Car.PowerTrain.Gear,
@@ -61,11 +62,9 @@ namespace Telemetry.Processing
                );
         }
 
-        internal override void WriteValuesIntoDatapool()
+        internal override void WriteValuesIntoDatapool(Games.Codemasters.ExtraData3 dataStructure, TelemetryDatapool datapool)
         {
-            //Debug.WriteLine($"Before write {new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds()}");
             writeCarValues(datapool.car, dataStructure);
-            //Debug.WriteLine($"After write {new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds()}");
         }
     }
 }

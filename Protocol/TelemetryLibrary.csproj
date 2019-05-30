@@ -51,7 +51,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\games\processing\DirtRallyDataProcessor.cs" />
-    <Compile Include="src\processing\calculation\TelemetryCalculation.cs" />
+    <Compile Include="src\games\processing\ProjectCarsDataProcessor.cs" />
+    <Compile Include="src\process\calculation\TelemetryCalculation.cs" />
     <Compile Include="src\games\GamesExtension.cs" />
     <Compile Include="src\games\processing\RaceRoomDataProcessor.cs" />
     <Compile Include="src\protocol\ITelemetryConverter.cs" />
@@ -66,12 +67,12 @@
     <Compile Include="src\protocol\transmission\ProtocolHeader.cs" />
     <Compile Include="src\protocol\transmission\ProtocolPacketConverter.cs" />
     <Compile Include="src\protocol\transmission\TelemetryValueTypeID.cs" />
-    <Compile Include="src\protocol\values\categories\CarValues.cs" />
-    <Compile Include="src\protocol\values\categories\DriverValues.cs" />
+    <Compile Include="src\protocol\values\id_definitions\CarValues.cs" />
+    <Compile Include="src\protocol\values\id_definitions\DriverValues.cs" />
     <Compile Include="src\protocol\values\TelemetryValue.cs" />
     <Compile Include="src\read\GameData.cs" />
     <Compile Include="src\GameDataWorker.cs" />
-    <Compile Include="src\processing\IGameDataProcessor.cs" />
+    <Compile Include="src\process\IGameDataProcessor.cs" />
     <Compile Include="src\read\IGameDataReader.cs" />
     <Compile Include="src\connection\IConnection.cs" />
     <Compile Include="src\connection\ConnectionWrapper.cs" />

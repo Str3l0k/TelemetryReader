@@ -17,18 +17,17 @@ namespace Telemetry.Protocol
         /* submodules */
         protected readonly List<ITelemetryCalculation> calculations = new List<ITelemetryCalculation>();
         protected ITransmitConnection connection;
-        private ProtocolPacketConverter packetConverter;
-        private ProtocolPacketHeader packetHeader;
+        private readonly ProtocolPacketConverter packetConverter;
+        private readonly ProtocolPacketHeader packetHeader;
 
         /* data properties */
-        protected T dataStructure = Activator.CreateInstance<T>();
-        protected readonly TelemetryDatapool datapool = new TelemetryDatapool(false);
-
+        private T dataStructure = Activator.CreateInstance<T>();
+        private readonly TelemetryDatapool datapool = new TelemetryDatapool(false);
 
         /* constructor */
         protected TelemetryProtocolProcessor()
         {
-            InitValues();
+            InitValues(datapool);
             packetConverter = new ProtocolPacketConverter(skipUnchangedValues: true);
             packetHeader = new ProtocolPacketHeader(2);
         }
@@ -53,7 +52,7 @@ namespace Telemetry.Protocol
         public void ProcessData(GameData data)
         {
             ConvertRawDataToStructure(data);
-            WriteValuesIntoDatapool();
+            WriteValuesIntoDatapool(dataStructure, datapool);
 
             // Execute calculations
             calculations.ForEach((calculation) =>
@@ -87,8 +86,8 @@ namespace Telemetry.Protocol
         }
 
         /* specific implementation per data structure */
-        internal abstract void InitValues();
+        internal abstract void InitValues(TelemetryDatapool datapool);
 
-        internal abstract void WriteValuesIntoDatapool();
+        internal abstract void WriteValuesIntoDatapool(T dataStructure ,TelemetryDatapool datapool);
     }
 }

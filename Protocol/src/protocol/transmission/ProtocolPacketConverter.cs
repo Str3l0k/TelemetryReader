@@ -109,7 +109,6 @@ namespace Telemetry.Protocol.Transmission
 
         private byte[] GetBytesFromFloat(TelemetryValue<float> f)
         {
-
             byte[] data = CreateNewValueBuffer(sizeof(float));
 
             Buffer.BlockCopy(valueTypeData[TelemetryValueTypeID.Float], 0, data, 0, sizeof(sbyte)); // type ID
@@ -144,7 +143,7 @@ namespace Telemetry.Protocol.Transmission
         private byte[] GetEncodedStringBytes(TelemetryValue<string> s)
         {
             byte[] encodedStringData = Encoding.UTF8.GetBytes(s.Current);
-            byte[] data = CreateNewValueBuffer(/* string size parameter */ sizeof(UInt16) + encodedStringData.Length);
+            byte[] data = CreateNewValueBuffer(sizeof(UInt16) + encodedStringData.Length);
 
             Buffer.BlockCopy(valueTypeData[TelemetryValueTypeID.String], 0, data, 0, sizeof(sbyte)); // type ID
             Buffer.BlockCopy(BitConverter.GetBytes(s.ID), 0, data, sizeof(sbyte), sizeof(UInt16)); // value ID
