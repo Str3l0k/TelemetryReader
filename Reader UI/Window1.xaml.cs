@@ -26,9 +26,7 @@ namespace TelemetryReader
         private GameDataWorker gameWorker;
 
         /* protocol transmission objects */
-        private TransmitConnectionWrapper connections = new TransmitConnectionWrapper();
-        private ProtocolPacketConverter packetConverter = new ProtocolPacketConverter();
-        private ProtocolPacketHeader packetHeader = new ProtocolPacketHeader(2);
+        private readonly TransmitConnectionWrapper connections = new TransmitConnectionWrapper();
 
         #region init
         public Window1()
@@ -37,6 +35,7 @@ namespace TelemetryReader
             InitializeUI();
             InitializeComponent();
 
+            // TODO this connections are only hardcoded for testing purpose
             var connection = new UDPConnection(new IPEndPoint(IPAddress.Parse("192.168.178.22"), 1337));
             var connection2 = new UDPConnection(new IPEndPoint(IPAddress.Parse("192.168.178.24"), 1337));
 
@@ -52,7 +51,7 @@ namespace TelemetryReader
 
         private void InitializeGameObserver()
         {
-            gameObserver = new GameObserver(games.asArray);
+            gameObserver = new GameObserver(games.AsArray);
             gameObserver.OnGameFound += OnGameFound;
             gameObserver.OnGameExited += OnGameExited;
         }
@@ -68,7 +67,7 @@ namespace TelemetryReader
         private void Window1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             gameObserver.Stop();
-            gameWorker.Stop();
+            gameWorker?.Stop();
         }
         #endregion
 
@@ -77,10 +76,6 @@ namespace TelemetryReader
         {
             Debug.WriteLine($"Game found {game.Name}");
             gameObserver.Stop();
-
-            // TODO check game id
-            // TODO start worker based on found game
-
             StartWorker(game.ID);
         }
 

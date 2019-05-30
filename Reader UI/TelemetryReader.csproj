@@ -142,61 +142,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="src\protocol\datapool\categories\Car.cs" />
-    <Compile Include="src\protocol\datapool\categories\Driver.cs" />
-    <Compile Include="src\protocol\datapool\categories\Session.cs" />
-    <Compile Include="src\protocol\games\assetto\AsettoCorsaData.cs" />
-    <Compile Include="src\protocol\games\assetto\AssettoCorsaGraphicReader.cs" />
-    <Compile Include="src\protocol\games\assetto\AssettoCorsaStaticReader.cs" />
-    <Compile Include="src\protocol\games\assetto\AssettoCorsaPhysicsReader.cs" />
-    <Compile Include="src\protocol\games\codemasters\CodemastersData.cs" />
-    <Compile Include="src\protocol\games\codemasters\F12016Reader.cs" />
-    <Compile Include="src\protocol\games\codemasters\DirtRallyReader.cs" />
-    <Compile Include="src\protocol\games\gtr2\GTR2Reader.cs" />
-    <Compile Include="src\protocol\games\pcars2\ProjectCars2Data.cs" />
-    <Compile Include="src\protocol\games\pcars2\ProjectCars2Reader.cs" />
-    <Compile Include="src\protocol\games\pcars\ProjectCarsData.cs" />
-    <Compile Include="src\protocol\games\pcars\ProjectCarsReader.cs" />
-    <Compile Include="src\protocol\games\raceroom\R3EData.cs" />
-    <Compile Include="src\protocol\GameData.cs" />
-    <Compile Include="src\protocol\games\assetto\AssettoCorsaReader.cs" />
-    <Compile Include="src\protocol\games\iracing\iRacingReader.cs" />
-    <Compile Include="src\protocol\games\raceroom\R3EReader.cs" />
-    <Compile Include="src\protocol\games\race\Race07Data.cs" />
-    <Compile Include="src\protocol\games\race\Race07Reader.cs" />
-    <Compile Include="src\protocol\games\rfactor2\rFactor2Data.cs" />
-    <Compile Include="src\protocol\games\rfactor2\rFactor2ScoringReader.cs" />
-    <Compile Include="src\protocol\games\rfactor2\rFactor2TelemetryReader.cs" />
-    <Compile Include="src\protocol\games\rfactor2\rFactor2Reader.cs" />
-    <Compile Include="src\protocol\ProtocolDataConverter.cs" />
-    <Compile Include="src\protocol\ProtocolPacket.cs" />
-    <Compile Include="src\protocol\ProtocolReader.cs" />
-    <Compile Include="src\protocol\ProtocolValue.cs" />
-    <Compile Include="src\protocol\SendData.cs" />
-    <Compile Include="src\reader\impl\UDPDataReceiver.cs" />
-    <Compile Include="src\Preferences.cs" />
-    <Compile Include="src\reader\impl\iRacingReader.cs" />
-    <Compile Include="src\protocol\SharedMemoryReader.cs" />
-    <Compile Include="src\settings\Config.cs" />
-    <Compile Include="src\settings\ConfigOption.cs" />
-    <Compile Include="src\settings\ConfigReader.cs" />
-    <Compile Include="src\settings\ConfigTypes.cs" />
-    <Compile Include="src\settings\ConfigWriter.cs" />
-    <Compile Include="src\settings\impl\TelemetryReaderConfig.cs" />
-    <Compile Include="src\ui\UIController.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Window1.xaml">
