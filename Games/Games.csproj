@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Games.cs" />
+    <Compile Include="src\Games.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -56,8 +56,10 @@
     <Compile Include="src\data\Game.cs" />
     <Compile Include="src\data\GameInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\structures\Codemasters.cs" />
-    <Compile Include="src\structures\R3E.cs" />
+    <Compile Include="src\structures\codemasters\Codemasters.cs" />
+    <Compile Include="src\structures\projectcars\ProjectCarsData.cs" />
+    <Compile Include="src\structures\raceroom\R3E.cs" />
+    <Compile Include="src\structures\Vector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -66,5 +68,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
