@@ -1,0 +1,23 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/bin
+/Debug
+/obj
+/.vs/TelemetryReader/v14
+/UpgradeLog.htm
+/TelemetryReader.VC.VC.opendb
+/TelemetryReader.VC.db
+/packages/YamlDotNet.Core.2.2.0/lib/net35/YamlDotNet.Core.pdb
+/packages/YamlDotNet.Core.2.2.0/lib/net35/YamlDotNet.Core.dll
+/packages/YamlDotNet.4.0.0/lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/YamlDotNet.xml
+/packages/YamlDotNet.4.0.0/lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/YamlDotNet.pdb
+/packages/YamlDotNet.4.0.0/lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/YamlDotNet.dll
+/packages/YamlDotNet.4.0.0/lib/net35/YamlDotNet.xml
+/packages/YamlDotNet.4.0.0/lib/net35/YamlDotNet.pdb
+/packages/YamlDotNet.4.0.0/lib/net35/YamlDotNet.dll
+/packages/YamlDotNet.4.0.0/lib/dotnet/YamlDotNet.xml
+/packages/YamlDotNet.4.0.0/lib/dotnet/YamlDotNet.pdb
+/packages/YamlDotNet.4.0.0/lib/dotnet/YamlDotNet.dll
+/ipch/RFACTOR2SDK-292035a5/RFACTOR2SHAREDMEMPLUGIN-a61cd3b4.ipch

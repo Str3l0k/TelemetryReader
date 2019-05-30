@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{430E6020-34A0-436E-B729-9D19B12C84B6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Telemetry</RootNamespace>
+    <AssemblyName>TelemetryLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\games\processing\DirtRallyDataProcessor.cs" />
+    <Compile Include="src\games\processing\ProjectCarsDataProcessor.cs" />
+    <Compile Include="src\process\calculation\TelemetryCalculation.cs" />
+    <Compile Include="src\games\GamesExtension.cs" />
+    <Compile Include="src\games\processing\RaceRoomDataProcessor.cs" />
+    <Compile Include="src\protocol\ITelemetryConverter.cs" />
+    <Compile Include="src\protocol\datapool\IValueWriter.cs" />
+    <Compile Include="src\protocol\datapool\IValueReader.cs" />
+    <Compile Include="src\protocol\datapool\TelemetryDatapool.cs" />
+    <Compile Include="src\protocol\datapool\ValueAccessor.cs" />
+    <Compile Include="src\protocol\TelemetryProtocolProcessor.cs" />
+    <Compile Include="src\protocol\datapool\categories\Car.cs" />
+    <Compile Include="src\protocol\datapool\categories\Driver.cs" />
+    <Compile Include="src\protocol\datapool\categories\Session.cs" />
+    <Compile Include="src\protocol\transmission\ProtocolHeader.cs" />
+    <Compile Include="src\protocol\transmission\ProtocolPacketConverter.cs" />
+    <Compile Include="src\protocol\transmission\TelemetryValueTypeID.cs" />
+    <Compile Include="src\protocol\values\id_definitions\CarValues.cs" />
+    <Compile Include="src\protocol\values\id_definitions\DriverValues.cs" />
+    <Compile Include="src\protocol\values\TelemetryValue.cs" />
+    <Compile Include="src\read\GameData.cs" />
+    <Compile Include="src\GameDataWorker.cs" />
+    <Compile Include="src\process\IGameDataProcessor.cs" />
+    <Compile Include="src\read\IGameDataReader.cs" />
+    <Compile Include="src\connection\IConnection.cs" />
+    <Compile Include="src\connection\ConnectionWrapper.cs" />
+    <Compile Include="src\connection\impl\TCPConnection.cs" />
+    <Compile Include="src\connection\impl\UDPConnection.cs" />
+    <Compile Include="src\read\impl\SharedMemoryDataReader.cs" />
+    <Compile Include="src\read\impl\UDPDataReader.cs" />
+    <Compile Include="src\utilities\GameObserver.cs" />
+    <Compile Include="src\utilities\SystemProcessObserver.cs" />
+    <Compile Include="src\utilities\StructMarshal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Games\Games.csproj">
+      <Project>{56770fc3-0452-4ea3-b9cf-f482bd309e83}</Project>
+      <Name>Games</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\games\calculations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
