@@ -3,7 +3,8 @@ The all in one solution for reading, processing and transmitting telemetry for S
 
 ## Current status
 ---
-First 
+The library is usable, but still in an wip-state.
+The UI demonstration shows a very basic usage of the library.
 ---
 
 ## Games
