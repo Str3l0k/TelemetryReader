@@ -80,3 +80,6 @@ and sub-classes for easy access without having to know specific value IDs.
 
 ## Application
 TODO
+
+## License 
+Apache 2.0
