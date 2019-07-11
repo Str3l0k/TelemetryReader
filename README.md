@@ -17,9 +17,11 @@ a easy-to-use format.
 To keep focus on the proper implementation and making it easier to add new games,
 the list of games supported from the beginning is rather short:
 
+```
 - Assetto Corsa (including Competezione | based on shared memory) 
 - RaceRoom Racing Experience
 - Project Cars 2
+```
 
 Many additional games are already prepared and will be added step by step.
 If you are willing to help or want to have your game added feel free to contact me.
@@ -57,11 +59,13 @@ for real-time telemetry this can make a difference, for example when using UDP a
 ##### 4.1.1 ID Ranges
 The IDs are divided into five different main categories:
 
+```
 - Connection (0 - 511)
 - Car (512 - 10399)
 - Driver (10400 - 13471)
 - Session (13472 - 16383)
 - Opponents (16384 - 65535)
+```
 
 The Connection category is the smallest (512 values), as it is mainly to add non-game values to the protocol, 
 like packet number or similar control values.
