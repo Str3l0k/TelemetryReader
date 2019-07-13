@@ -94,6 +94,7 @@ Current version 1.0:
 TLMTRY
 $ProtocolVersion$ (UInt8)
 $PackageCounter$ (UInt32)
+$ValueCount$ (UInt16)
 END
 ```
 Where $XXX$ values are dynamic and everything else is static.
